@@ -1,0 +1,184 @@
+0 NOTE Andrew Narvaez
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 2
+1 DATE 3 SEP 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME anarvaez12@verizon.net
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Andrew /Narvaez/
+2 GIVN Andrew
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 3 JAN 2002
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Albert /Narvaez/
+2 GIVN Albert
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 17 JAN 1971
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I3@ INDI
+1 NAME Andrea /Christaldi/
+2 GIVN Andrea
+2 SURN Christaldi
+2 _MARNM Narvaez
+1 SEX F
+1 BIRT
+2 DATE 12 FEB 1971
+1 FAMS @F1@
+1 FAMC @F3@
+0 @I4@ INDI
+1 NAME Lou /Narvaez/
+2 GIVN Lou
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 6 JUN 1948
+1 FAMS @F2@
+0 @I5@ INDI
+1 NAME Melissa /Sanford/
+2 GIVN Melissa
+2 SURN Sanford
+2 _MARNM Narvaez
+1 SEX F
+1 BIRT
+2 DATE 6 AUG 1951
+1 FAMS @F2@
+0 @I6@ INDI
+1 NAME John /Narvaez/
+2 GIVN John
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 8 JUL 1969
+1 FAMS @F4@
+1 FAMS @F5@
+1 FAMC @F2@
+0 @I7@ INDI
+1 NAME Mary /Narvaez/
+2 GIVN Mary
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX F
+1 BIRT
+2 DATE 16 OCT 1974
+1 DEAT Y
+2 DATE 8 JUL 2017
+1 FAMS @F5@
+0 @I8@ INDI
+1 NAME Lindsey /Soyer/
+2 GIVN Lindsey
+2 SURN Soyer
+2 _MARNM Narvaez
+1 SEX F
+1 BIRT
+2 DATE 4 SEP 1967
+1 FAMS @F4@
+0 @I9@ INDI
+1 NAME Sophia /Narvaez/
+2 GIVN Sophia
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX F
+1 BIRT
+2 DATE 10 OCT 2006
+1 FAMC @F4@
+0 @I10@ INDI
+1 NAME Lucian /Narvaez/
+2 GIVN Lucian
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 3 MAY 2001
+1 FAMC @F5@
+0 @I11@ INDI
+1 NAME Christian /Narvaez/
+2 GIVN Christian
+2 SURN Narvaez
+2 _MARNM Narvaez
+1 SEX M
+1 BIRT
+2 DATE 12 SEP 1965
+1 DEAT Y
+2 DATE 27 APR 1984
+1 FAMC @F2@
+0 @I12@ INDI
+1 NAME Matthew /Christaldi/
+2 GIVN Matthew
+2 SURN Christaldi
+2 _MARNM Christaldi
+1 SEX M
+1 BIRT
+2 DATE 18 NOV 1951
+1 FAMS @F3@
+0 @I13@ INDI
+1 NAME Loren /Kelley/
+2 GIVN Loren
+2 SURN Kelley
+2 _MARNM Christaldi
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1949
+1 FAMS @F3@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 3 SEP 1999
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F2@ FAM
+1 HUSB @I4@
+1 WIFE @I5@
+1 CHIL @I2@
+1 CHIL @I6@
+1 CHIL @I11@
+1 MARR
+2 DATE 16 JUL 1962
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F3@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 CHIL @I3@
+1 MARR
+2 DATE 7 NOV 1968
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F4@ FAM
+1 HUSB @I6@
+1 WIFE @I8@
+1 CHIL @I9@
+1 MARR
+2 DATE 5 DEC 2019
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F5@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I10@
+1 MARR
+2 DATE 9 JUL 1995
+1 EVEN
+2 TYPE Ending
+1 _CURRENT N
+1 _PRIMARY N
+0 TRLR
