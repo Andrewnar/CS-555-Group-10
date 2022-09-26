@@ -1,0 +1,27 @@
++-----+----------------------+--------+-------------+-----+-------+-------------+---------------------+--------+
+|  ID |         Name         | Gender |   Birthday  | Age | Alive |    Death    |        Child        | Spouse |
++-----+----------------------+--------+-------------+-----+-------+-------------+---------------------+--------+
+|  I1 |   Andrew /Narvaez/   |   M    |  3 JAN 2002 |  20 |  True |     N/A     |         N/A         |  N/A   |
+|  I2 |   Albert /Narvaez/   |   M    | 17 JAN 1971 |  51 |  True |     N/A     |        ['I1']       |   I3   |
+|  I3 | Andrea /Christaldi/  |   F    | 12 FEB 1971 |  51 |  True |     N/A     |        ['I1']       |   I2   |
+|  I4 |    Lou /Narvaez/     |   M    |  6 JUN 1948 |  74 |  True |     N/A     | ['I2', 'I6', 'I11'] |   I5   |
+|  I5 |  Melissa /Sanford/   |   F    |  6 AUG 1951 |  71 |  True |     N/A     | ['I2', 'I6', 'I11'] |   I4   |
+|  I6 |    John /Narvaez/    |   M    |  8 JUL 1969 |  53 |  True |     N/A     |    ['I9', 'I10']    |   I7   |
+|  I7 |    Mary /Narvaez/    |   F    | 16 OCT 1974 |  47 | False |  8 JUL 2017 |       ['I10']       |   I6   |
+|  I8 |   Lindsey /Soyer/    |   F    |  4 SEP 1967 |  55 |  True |     N/A     |        ['I9']       |   I6   |
+|  I9 |   Sophia /Narvaez/   |   F    | 10 OCT 2006 |  15 |  True |     N/A     |         N/A         |  N/A   |
+| I10 |   Lucian /Narvaez/   |   M    |  3 MAY 2001 |  21 |  True |     N/A     |         N/A         |  N/A   |
+| I11 | Christian /Narvaez/  |   M    | 12 SEP 1965 |  57 | False | 27 APR 1984 |         N/A         |  N/A   |
+| I12 | Matthew /Christaldi/ |   M    | 18 NOV 1951 |  70 |  True |     N/A     |        ['I3']       |  I13   |
+| I13 |    Loren /Kelley/    |   F    | 15 MAR 1949 |  73 |  True |     N/A     |        ['I3']       |  I12   |
++-----+----------------------+--------+-------------+-----+-------+-------------+---------------------+--------+
++----+-------------+----------+------------+----------------------+---------+---------------------+---------------------+
+| ID |   Married   | Divorced | Husband ID |     Husband Name     | Wife ID |      Wife Name      |       Children      |
++----+-------------+----------+------------+----------------------+---------+---------------------+---------------------+
+| F1 |  3 SEP 1999 |   N/A    |     I2     |   Albert /Narvaez/   |    I3   | Andrea /Christaldi/ |        ['I1']       |
+| F2 | 16 JUL 1962 |   N/A    |     I4     |    Lou /Narvaez/     |    I5   |  Melissa /Sanford/  | ['I2', 'I6', 'I11'] |
+| F3 |  7 NOV 1968 |   N/A    |    I12     | Matthew /Christaldi/ |   I13   |    Loren /Kelley/   |        ['I3']       |
+| F4 |  5 DEC 2019 |   N/A    |     I6     |    John /Narvaez/    |    I8   |   Lindsey /Soyer/   |        ['I9']       |
+| F5 |  9 JUL 1995 |   N/A    |     I6     |    John /Narvaez/    |    I7   |    Mary /Narvaez/   |       ['I10']       |
++----+-------------+----------+------------+----------------------+---------+---------------------+---------------------+
+

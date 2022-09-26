@@ -5,7 +5,11 @@ from datetime import date
 from collections import OrderedDict
 from prettytable import PrettyTable
 
-
+# 
+printToFile = False
+if printToFile:
+    f = open('project3output.txt','w')
+    sys.stdout = f  
 
 def calc_age(birthdate):
     # Calculate age from datetime obj
