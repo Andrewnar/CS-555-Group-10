@@ -75,8 +75,10 @@ class Family:
             prev_tag = None
 
             for line in file:
+                line = line.replace('@', "")
                 line = line.rstrip().split()
-                
+
+
                 # handles when arguemnt and tag are swapped bc of exception listed in proejct 2
                 if len(line) > 2 and (line[2] == 'INDI' or line[2] == 'FAM'):
                     line[1], line[2] = line[2], line[1]
