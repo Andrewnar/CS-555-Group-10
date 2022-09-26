@@ -136,7 +136,6 @@ class Family:
                             family[curr_family][0] = args
                         if prevTag == "DIV":
                             family[curr_family][1] = args
-                            family[curr_family][4], family[curr_family][5] = "N/A", "N/A"
 
                         
 
