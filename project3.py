@@ -2,6 +2,9 @@ import sys
 import pprint
 import collections
 from datetime import date
+from collections import OrderedDict
+from prettytable import PrettyTable
+
 
 
 def calc_age(birthdate):
@@ -19,16 +22,44 @@ class Family:
         self.file = filename
 
     def __str__(self):
-        # TODO prettify prints
         # To sort dictionary by key we can also make it an order dict and apply
-        # ordereddict = collections.OrderedDict(sorted(dict.items()))
+        # people = collections.OrderedDict(sorted(self.people.items()))
+        # family = collections.OrderedDict(sorted(self.family.items()))
 
-        print("Indiviudals")
-        pprint.pprint(self.people)
-        print("Families")
-        pprint.pprint(self.family)
+        t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
+        for key, val in self.people.items():
+            t.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]])
+        print(t)
+
+        f = PrettyTable(['ID', 'Married', 'Divorced', 'Husband ID', 'Husband Name', 'Wife ID', 'Wife Name', 'Children'])
+        for key, val in self.family.items():
+            f.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6]])
+        print(f)
         return ""
     
+    def gen_rest_args(self):
+        # Will update spouses and children for individuals
+        people = self.people 
+        family = self.family
+        for family_id, args in family.items():
+            if args[1] == "N/A":
+                # Marriage without divorce... curr spouse!
+                people[args[2]][7] = args[4]
+                people[args[4]][7] = args[2]
+
+            # Have to update children for each individual regardless of divorce
+            dad_chil = [] if people[args[2]][6] == "N/A" else people[args[2]][6]
+            mom_chil = [] if people[args[4]][6] == "N/A" else people[args[4]][6]
+
+            children = [] if args[6] == "N/A" else args[6]
+
+            # Set children
+            people[args[2]][6] = dad_chil + children
+            people[args[4]][6] = mom_chil + children
+
+        self.people = people
+        self.family = family
+
     def create_family(self, filename):
         people = self.people 
         family = self.family
@@ -80,13 +111,11 @@ class Family:
                 if tag == "SEX":
                     people[curr_person][1] = args
 
-
                 if tag in ["BIRT", "DEAT", "MARR", "DIV"]: # need to save tag so we know where to store date
                     prevTag = tag
                     continue
                 
                 if tag == "DATE": 
-
                     if prevTag in ["BIRT", "DEAT"]:
                         # part of person
                         if prevTag == "BIRT": # have to fill age
@@ -103,13 +132,45 @@ class Family:
                     else:
                         # part of family
                         # TODO create flags for if prevTag is MARR or DIV and fill out for each
-                        pass
+                        if prevTag == "MARR":
+                            family[curr_family][0] = args
+                        if prevTag == "DIV":
+                            family[curr_family][1] = args
+                            family[curr_family][4], family[curr_family][5] = "N/A", "N/A"
 
-            # TODO Update Family Collection
+                        
+
+                # TODO Update Family Collection
+                # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
+
+                if tag == "HUSB" or tag == "WIFE":
+                    #TODO individual_id of husband of family...
+                    temp_id = 2
+                    temp_name = 3
+                    if tag == "WIFE":
+                        temp_id = 4
+                        temp_name = 5
+                    family[curr_family][temp_id] = args
+                    family[curr_family][temp_name] = people[args][0]
+
+                if tag == "CHIL":
+                    #TODO Indiviudal_id of CHIL of family
+                    children = family[curr_family][6]
+                    if children == "N/A":
+                        children = []
+                    children += [args]
+
+                    family[curr_family][6] = children 
+                    
+                if tag == "FAMC" or tag == "FAMS":
+                    # tags will be handled at end --> self.gen_rest_args()
+                    # this will loop through family and set children/spouses for individuals
+                    pass
+
             
-
         self.people = people
         self.family = family
+        self.gen_rest_args()
 
   
 if __name__ == '__main__':
