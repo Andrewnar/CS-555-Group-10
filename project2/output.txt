@@ -1,0 +1,368 @@
+--> 0 NOTE Andrew Narvaez
+<-- 0|NOTE|Y|Andrew Narvaez 
+--> 0 HEAD
+<-- 0|HEAD|Y
+--> 1 SOUR Family Echo
+<-- 1|SOUR|N|Family Echo 
+--> 2 WWW http://www.familyecho.com/
+<-- 2|WWW|N|http://www.familyecho.com/ 
+--> 1 FILE Family 2
+<-- 1|FILE|N|Family 2 
+--> 1 DATE 3 SEP 2022
+<-- 1|DATE|N|3 SEP 2022 
+--> 1 DEST ANSTFILE
+<-- 1|DEST|N|ANSTFILE 
+--> 1 GEDC
+<-- 1|GEDC|N
+--> 2 VERS 5.5.1
+<-- 2|VERS|N|5.5.1 
+--> 2 FORM LINEAGE-LINKED
+<-- 2|FORM|N|LINEAGE-LINKED 
+--> 1 SUBM @I1@
+<-- 1|SUBM|N|@I1@ 
+--> 2 NAME anarvaez12@verizon.net
+<-- 2|NAME|N|anarvaez12@verizon.net 
+--> 1 SUBN
+<-- 1|SUBN|N
+--> 1 CHAR UTF-8
+<-- 1|CHAR|N|UTF-8 
+--> 0 @I1@ INDI
+<-- 0|INDI|Y|@I1@ 
+--> 1 NAME Andrew /Narvaez/
+<-- 1|NAME|Y|Andrew /Narvaez/ 
+--> 2 GIVN Andrew
+<-- 2|GIVN|N|Andrew 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 3 JAN 2002
+<-- 2|DATE|Y|3 JAN 2002 
+--> 1 FAMC @F1@
+<-- 1|FAMC|Y|@F1@ 
+--> 0 @I2@ INDI
+<-- 0|INDI|Y|@I2@ 
+--> 1 NAME Albert /Narvaez/
+<-- 1|NAME|Y|Albert /Narvaez/ 
+--> 2 GIVN Albert
+<-- 2|GIVN|N|Albert 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 17 JAN 1971
+<-- 2|DATE|Y|17 JAN 1971 
+--> 1 FAMS @F1@
+<-- 1|FAMS|Y|@F1@ 
+--> 1 FAMC @F2@
+<-- 1|FAMC|Y|@F2@ 
+--> 0 @I3@ INDI
+<-- 0|INDI|Y|@I3@ 
+--> 1 NAME Andrea /Christaldi/
+<-- 1|NAME|Y|Andrea /Christaldi/ 
+--> 2 GIVN Andrea
+<-- 2|GIVN|N|Andrea 
+--> 2 SURN Christaldi
+<-- 2|SURN|N|Christaldi 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 12 FEB 1971
+<-- 2|DATE|Y|12 FEB 1971 
+--> 1 FAMS @F1@
+<-- 1|FAMS|Y|@F1@ 
+--> 1 FAMC @F3@
+<-- 1|FAMC|Y|@F3@ 
+--> 0 @I4@ INDI
+<-- 0|INDI|Y|@I4@ 
+--> 1 NAME Lou /Narvaez/
+<-- 1|NAME|Y|Lou /Narvaez/ 
+--> 2 GIVN Lou
+<-- 2|GIVN|N|Lou 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 6 JUN 1948
+<-- 2|DATE|Y|6 JUN 1948 
+--> 1 FAMS @F2@
+<-- 1|FAMS|Y|@F2@ 
+--> 0 @I5@ INDI
+<-- 0|INDI|Y|@I5@ 
+--> 1 NAME Melissa /Sanford/
+<-- 1|NAME|Y|Melissa /Sanford/ 
+--> 2 GIVN Melissa
+<-- 2|GIVN|N|Melissa 
+--> 2 SURN Sanford
+<-- 2|SURN|N|Sanford 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 6 AUG 1951
+<-- 2|DATE|Y|6 AUG 1951 
+--> 1 FAMS @F2@
+<-- 1|FAMS|Y|@F2@ 
+--> 0 @I6@ INDI
+<-- 0|INDI|Y|@I6@ 
+--> 1 NAME John /Narvaez/
+<-- 1|NAME|Y|John /Narvaez/ 
+--> 2 GIVN John
+<-- 2|GIVN|N|John 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 8 JUL 1969
+<-- 2|DATE|Y|8 JUL 1969 
+--> 1 FAMS @F4@
+<-- 1|FAMS|Y|@F4@ 
+--> 1 FAMS @F5@
+<-- 1|FAMS|Y|@F5@ 
+--> 1 FAMC @F2@
+<-- 1|FAMC|Y|@F2@ 
+--> 0 @I7@ INDI
+<-- 0|INDI|Y|@I7@ 
+--> 1 NAME Mary /Narvaez/
+<-- 1|NAME|Y|Mary /Narvaez/ 
+--> 2 GIVN Mary
+<-- 2|GIVN|N|Mary 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 16 OCT 1974
+<-- 2|DATE|Y|16 OCT 1974 
+--> 1 DEAT Y
+<-- 1|DEAT|Y|Y 
+--> 2 DATE 8 JUL 2017
+<-- 2|DATE|Y|8 JUL 2017 
+--> 1 FAMS @F5@
+<-- 1|FAMS|Y|@F5@ 
+--> 0 @I8@ INDI
+<-- 0|INDI|Y|@I8@ 
+--> 1 NAME Lindsey /Soyer/
+<-- 1|NAME|Y|Lindsey /Soyer/ 
+--> 2 GIVN Lindsey
+<-- 2|GIVN|N|Lindsey 
+--> 2 SURN Soyer
+<-- 2|SURN|N|Soyer 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 4 SEP 1967
+<-- 2|DATE|Y|4 SEP 1967 
+--> 1 FAMS @F4@
+<-- 1|FAMS|Y|@F4@ 
+--> 0 @I9@ INDI
+<-- 0|INDI|Y|@I9@ 
+--> 1 NAME Sophia /Narvaez/
+<-- 1|NAME|Y|Sophia /Narvaez/ 
+--> 2 GIVN Sophia
+<-- 2|GIVN|N|Sophia 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 10 OCT 2006
+<-- 2|DATE|Y|10 OCT 2006 
+--> 1 FAMC @F4@
+<-- 1|FAMC|Y|@F4@ 
+--> 0 @I10@ INDI
+<-- 0|INDI|Y|@I10@ 
+--> 1 NAME Lucian /Narvaez/
+<-- 1|NAME|Y|Lucian /Narvaez/ 
+--> 2 GIVN Lucian
+<-- 2|GIVN|N|Lucian 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 3 MAY 2001
+<-- 2|DATE|Y|3 MAY 2001 
+--> 1 FAMC @F5@
+<-- 1|FAMC|Y|@F5@ 
+--> 0 @I11@ INDI
+<-- 0|INDI|Y|@I11@ 
+--> 1 NAME Christian /Narvaez/
+<-- 1|NAME|Y|Christian /Narvaez/ 
+--> 2 GIVN Christian
+<-- 2|GIVN|N|Christian 
+--> 2 SURN Narvaez
+<-- 2|SURN|N|Narvaez 
+--> 2 _MARNM Narvaez
+<-- 2|_MARNM|N|Narvaez 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 12 SEP 1965
+<-- 2|DATE|Y|12 SEP 1965 
+--> 1 DEAT Y
+<-- 1|DEAT|Y|Y 
+--> 2 DATE 27 APR 1984
+<-- 2|DATE|Y|27 APR 1984 
+--> 1 FAMC @F2@
+<-- 1|FAMC|Y|@F2@ 
+--> 0 @I12@ INDI
+<-- 0|INDI|Y|@I12@ 
+--> 1 NAME Matthew /Christaldi/
+<-- 1|NAME|Y|Matthew /Christaldi/ 
+--> 2 GIVN Matthew
+<-- 2|GIVN|N|Matthew 
+--> 2 SURN Christaldi
+<-- 2|SURN|N|Christaldi 
+--> 2 _MARNM Christaldi
+<-- 2|_MARNM|N|Christaldi 
+--> 1 SEX M
+<-- 1|SEX|Y|M 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 18 NOV 1951
+<-- 2|DATE|Y|18 NOV 1951 
+--> 1 FAMS @F3@
+<-- 1|FAMS|Y|@F3@ 
+--> 0 @I13@ INDI
+<-- 0|INDI|Y|@I13@ 
+--> 1 NAME Loren /Kelley/
+<-- 1|NAME|Y|Loren /Kelley/ 
+--> 2 GIVN Loren
+<-- 2|GIVN|N|Loren 
+--> 2 SURN Kelley
+<-- 2|SURN|N|Kelley 
+--> 2 _MARNM Christaldi
+<-- 2|_MARNM|N|Christaldi 
+--> 1 SEX F
+<-- 1|SEX|Y|F 
+--> 1 BIRT
+<-- 1|BIRT|Y
+--> 2 DATE 15 MAR 1949
+<-- 2|DATE|Y|15 MAR 1949 
+--> 1 FAMS @F3@
+<-- 1|FAMS|Y|@F3@ 
+--> 0 @F1@ FAM
+<-- 0|FAM|Y|@F1@ 
+--> 1 HUSB @I2@
+<-- 1|HUSB|Y|@I2@ 
+--> 1 WIFE @I3@
+<-- 1|WIFE|Y|@I3@ 
+--> 1 CHIL @I1@
+<-- 1|CHIL|Y|@I1@ 
+--> 1 MARR
+<-- 1|MARR|Y
+--> 2 DATE 3 SEP 1999
+<-- 2|DATE|Y|3 SEP 1999 
+--> 1 _CURRENT Y
+<-- 1|_CURRENT|N|Y 
+--> 1 _PRIMARY Y
+<-- 1|_PRIMARY|N|Y 
+--> 0 @F2@ FAM
+<-- 0|FAM|Y|@F2@ 
+--> 1 HUSB @I4@
+<-- 1|HUSB|Y|@I4@ 
+--> 1 WIFE @I5@
+<-- 1|WIFE|Y|@I5@ 
+--> 1 CHIL @I2@
+<-- 1|CHIL|Y|@I2@ 
+--> 1 CHIL @I6@
+<-- 1|CHIL|Y|@I6@ 
+--> 1 CHIL @I11@
+<-- 1|CHIL|Y|@I11@ 
+--> 1 MARR
+<-- 1|MARR|Y
+--> 2 DATE 16 JUL 1962
+<-- 2|DATE|Y|16 JUL 1962 
+--> 1 _CURRENT Y
+<-- 1|_CURRENT|N|Y 
+--> 1 _PRIMARY Y
+<-- 1|_PRIMARY|N|Y 
+--> 0 @F3@ FAM
+<-- 0|FAM|Y|@F3@ 
+--> 1 HUSB @I12@
+<-- 1|HUSB|Y|@I12@ 
+--> 1 WIFE @I13@
+<-- 1|WIFE|Y|@I13@ 
+--> 1 CHIL @I3@
+<-- 1|CHIL|Y|@I3@ 
+--> 1 MARR
+<-- 1|MARR|Y
+--> 2 DATE 7 NOV 1968
+<-- 2|DATE|Y|7 NOV 1968 
+--> 1 _CURRENT Y
+<-- 1|_CURRENT|N|Y 
+--> 1 _PRIMARY Y
+<-- 1|_PRIMARY|N|Y 
+--> 0 @F4@ FAM
+<-- 0|FAM|Y|@F4@ 
+--> 1 HUSB @I6@
+<-- 1|HUSB|Y|@I6@ 
+--> 1 WIFE @I8@
+<-- 1|WIFE|Y|@I8@ 
+--> 1 CHIL @I9@
+<-- 1|CHIL|Y|@I9@ 
+--> 1 MARR
+<-- 1|MARR|Y
+--> 2 DATE 5 DEC 2019
+<-- 2|DATE|Y|5 DEC 2019 
+--> 1 _CURRENT Y
+<-- 1|_CURRENT|N|Y 
+--> 1 _PRIMARY Y
+<-- 1|_PRIMARY|N|Y 
+--> 0 @F5@ FAM
+<-- 0|FAM|Y|@F5@ 
+--> 1 HUSB @I6@
+<-- 1|HUSB|Y|@I6@ 
+--> 1 WIFE @I7@
+<-- 1|WIFE|Y|@I7@ 
+--> 1 CHIL @I10@
+<-- 1|CHIL|Y|@I10@ 
+--> 1 MARR
+<-- 1|MARR|Y
+--> 2 DATE 9 JUL 1995
+<-- 2|DATE|Y|9 JUL 1995 
+--> 1 EVEN
+<-- 1|EVEN|N
+--> 2 TYPE Ending
+<-- 2|TYPE|N|Ending 
+--> 1 _CURRENT N
+<-- 1|_CURRENT|N|N 
+--> 1 _PRIMARY N
+<-- 1|_PRIMARY|N|N 
+--> 0 TRLR
+<-- 0|TRLR|Y

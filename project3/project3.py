@@ -179,7 +179,7 @@ class Family:
 
   
 if __name__ == '__main__':
-    filename = "Narvaez Family v1.0.txt"
+    filename = "../data/Narvaez Family v1.0.txt"
     andrew_fam = Family(filename)
     andrew_fam.create_family(filename)
     print(andrew_fam)
