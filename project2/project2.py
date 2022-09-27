@@ -1,5 +1,5 @@
 import sys
-filename = "Narvaez Family v1.0.txt"
+filename = "../data/Narvaez Family v1.0.txt"
 validDict = { # Valid Tags
             "INDI": 0,
             "NAME": 1,
