@@ -28,6 +28,7 @@ class Family:
         self.family = {} # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
         self.file = filename
 
+
     def __str__(self):
         # To sort dictionary by key we can also make it an order dict and apply
         # people = collections.OrderedDict(sorted(self.people.items()))
@@ -44,6 +45,7 @@ class Family:
         print(f)
         return ""
     
+
     def gen_rest_args(self):
         # Will update spouses and children for individuals
         people = self.people 
@@ -67,8 +69,54 @@ class Family:
         self.people = people
         self.family = family
 
+
     def check_constraints(self):
         # This function will check the constraints defined by the user stories
+
+        #US05 Marriage before death - rc
+        for (id, info) in self.family.items():
+            # in info:
+            # married date = info[0]
+            # husband id = info[2]
+            # wife id = info[4]
+            marriage_date = datetime.strptime(info[0], '%d %b %Y').date()
+            husband = self.people.get(info[2])
+            wife = self.people.get(info[4])
+            
+            if husband[5] != 'N/A': #check husband
+                #husband is dead
+                death_date = datetime.strptime(husband[5], '%d %b %Y').date()
+                if death_date < marriage_date:
+                    raise Exception(f"Error: Person [{info[2]}] can not be married after death.")
+    
+            if wife[5] != 'N/A': #check wife
+                #wife is dead
+                death_date = datetime.strptime(wife[5], '%d %b %Y').date()
+                if death_date < marriage_date:
+                    raise Exception(f"Error: Person [{info[2]}] can not be married after death.")
+        
+        #US06 Divorce before death - rc
+        for (id, info) in self.family.items():
+            # in info:
+            # divorce date = info[1]
+            # husband id = info[2]
+            # wife id = info[4]
+            if info[1] != 'N/A': #look for a divorce
+                divorce_date = datetime.strptime(info[1], '%d %b %Y').date()
+                husband = self.people.get(info[2])
+                wife = self.people.get(info[4])
+
+                if husband[5] != 'N/A': #check husband
+                    #husband is dead
+                    death_date = datetime.strptime(husband[5], '%d %b %Y').date()
+                    if death_date < divorce_date:
+                        raise Exception(f"Error: Person [{info[2]}] can not get a divorce after death.")
+    
+                if wife[5] != 'N/A': #check wife
+                    #wife is dead
+                    death_date = datetime.strptime(wife[5], '%d %b %Y').date()
+                    if death_date < divorce_date:
+                        raise Exception(f"Error: Person [{info[2]}] can not get a divorce after death.")
 
         # US07 Less than 150 years old
         for (id, info) in self.people.items(): # loop through all persons
@@ -116,6 +164,7 @@ class Family:
                         # if the child's birth date is greater than 9 months after the divorce date, error
                         if birth_date > constraint_date:
                             raise Exception(f"Child [{child}]'s birth date must be no more than 9 months after parents' divorce")
+
 
     def create_family(self, filename):
         people = self.people 
@@ -233,7 +282,7 @@ class Family:
 
   
 if __name__ == '__main__':
-    filename = "../data/Narvaez Family v1.0.txt"
+    filename = "../data/RyanClarkTestFamily.ged"
     andrew_fam = Family(filename)
     andrew_fam.create_family(filename)
     print(andrew_fam)
