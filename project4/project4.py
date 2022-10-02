@@ -1,9 +1,11 @@
 import sys
 import pprint
 import collections
+import datetime
 from datetime import date
 from collections import OrderedDict
 from prettytable import PrettyTable
+from dateutil.relativedelta import relativedelta
 
 # 
 printToFile = False
@@ -63,6 +65,55 @@ class Family:
 
         self.people = people
         self.family = family
+
+    def check_constraints(self):
+        # This function will check the constraints defined by the user stories
+
+        # US07 Less than 150 years old
+        for (id, info) in self.people.items(): # loop through all persons
+            if not info[4]: # if the person is dead, check our death constraints
+                # get date objects for birth and death date strings
+                death_date = datetime.strptime(info[5], '%d %b %Y').date()
+                birth_date = datetime.strptime(info[2], '%d %b %Y').date()
+
+                # Check if death date is less than 150 years after birth date, error if not
+                if death_date - birth_date >= 150:
+                    raise Exception(f"Person [${id}]'s death date must be less than 150 years after birth date")
+            else: # if the person is alive, check our living constraints
+                today = date.today() # get today's date
+                birth_date = datetime.strptime(info[2], '%d %b %Y').date() # get birth date
+
+                if today - birth_date >= 150:
+                    raise Exception(f"Person [${id}] must be less than 150 years old")
+        
+        # US08 Birth before marriage of parents
+        for (id, fam_info) in self.family.items(): # loop through all families
+            # get marriage date as a date object
+            marriage_date = datetime.strptime(fam_info[0], '%d %b %Y').date()
+            
+            divorced = not fam_info[1] == 'N/A'
+            divorced_date = None
+            constraint_date = None
+            if divorced:
+                # get divorce date
+                divorce_date = datetime.strptime(fam_info[1], '%d %b %Y').date()
+                
+                # get the constraint date
+                constraint_date = divorce_date + relativedelta(months=9)
+
+            # loop through all children
+            for child in fam_info[6]:
+                birth_date = datetime.strptime(self.people[child][2], '%d %b %Y').date()
+
+                # check if birthdate is > marriage date, error if not
+                if not birth_date > marriage_date:
+                    raise Exception(f"Child [${id}] should be born after parents' marriage")
+                
+                # if the family has been divorced, check the the divorce constraints
+                if divorced:
+                    # if the child's birth date is greater than 9 months after the divorce date, error
+                    if birth_date > constraint_date:
+                        raise Exception(f"Child [${id}]'s birth date must be no more than 9 months after parents' divorce")
 
     def create_family(self, filename):
         people = self.people 
@@ -176,6 +227,7 @@ class Family:
         self.people = people
         self.family = family
         self.gen_rest_args()
+        self.check_constraints()
 
   
 if __name__ == '__main__':
