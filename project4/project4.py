@@ -102,19 +102,20 @@ class Family:
                 # get the constraint date
                 constraint_date = divorce_date + relativedelta(months=9)
 
-            # loop through all children
-            for child in fam_info[6]:
-                birth_date = datetime.strptime(self.people[child][2], '%d %b %Y').date()
+            # loop through all children if they exist
+            if not fam_info[6] == 'N/A':
+                for child in fam_info[6]:
+                    birth_date = datetime.strptime(self.people[child][2], '%d %b %Y').date()
 
-                # check if birthdate is > marriage date, error if not
-                if not birth_date > marriage_date:
-                    raise Exception(f"Child [{child}] should be born after parents' marriage")
-                
-                # if the family has been divorced, check the the divorce constraints
-                if divorced:
-                    # if the child's birth date is greater than 9 months after the divorce date, error
-                    if birth_date > constraint_date:
-                        raise Exception(f"Child [{child}]'s birth date must be no more than 9 months after parents' divorce")
+                    # check if birthdate is > marriage date, error if not
+                    if not birth_date > marriage_date:
+                        raise Exception(f"Child [{child}] should be born after parents' marriage")
+                    
+                    # if the family has been divorced, check the the divorce constraints
+                    if divorced:
+                        # if the child's birth date is greater than 9 months after the divorce date, error
+                        if birth_date > constraint_date:
+                            raise Exception(f"Child [{child}]'s birth date must be no more than 9 months after parents' divorce")
 
     def create_family(self, filename):
         people = self.people 
