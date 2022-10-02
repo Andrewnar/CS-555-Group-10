@@ -1,0 +1,24 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 3
+1 DATE 1 OCT 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME evalent2@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Dead /Too Old/
+2 GIVN Dead
+2 SURN Too Old
+2 _MARNM Too Old
+1 SEX M
+1 BIRT
+2 DATE 11 JUN 1850
+1 DEAT Y
+2 DATE 10 APR 2012
+0 TRLR

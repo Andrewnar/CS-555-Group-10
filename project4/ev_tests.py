@@ -1,38 +1,77 @@
 import unittest
+from project4 import Family
 
 class Test(unittest.TestCase):
 
-    #TODO Create Test Cases
-
     def test_US07_one(self):
-        self.assertEqual("1","1")
+        successful = True
+        try:
+            filename = "../data/US07_one.ged"
+            fam = Family(filename)
+            fam.create_family(filename)
+        except Exception:
+            successful = False
+        self.assertTrue(successful)
 
     def test_US07_two(self):
-        self.assertEqual("1","1")
+        filename = "../data/US07_two.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)
 
     def test_US07_three(self):
-        self.assertEqual("1","1")
+        successful = True
+        try:
+            filename = "../data/US07_three.ged"
+            fam = Family(filename)
+            fam.create_family(filename)
+        except Exception:
+            successful = False
+        self.assertTrue(successful)
 
     def test_US07_four(self):
-        self.assertEqual("1","1")
+        filename = "../data/US07_four.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)
 
     def test_US07_five(self):
-        self.assertEqual("1","1")    
+        filename = "../data/US07_five.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)  
 
     def test_US08_one(self):
-        self.assertEqual("1","1")
+        successful = True
+        try:
+            filename = "../data/US08_one.ged"
+            fam = Family(filename)
+            fam.create_family(filename)
+        except Exception:
+            successful = False
+        self.assertTrue(successful)
 
     def test_US08_two(self):
-        self.assertEqual("1","1")
+        filename = "../data/US08_two.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)
 
     def test_US08_three(self):
-        self.assertEqual("1","1")
+        filename = "../data/US08_three.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)
 
     def test_US08_four(self):
-        self.assertEqual("1","1")
+        filename = "../data/US08_four.ged"
+        fam = Family(filename)
+        self.assertRaises(Exception, fam.create_family, filename)
 
     def test_US08_five(self):
-        self.assertEqual("1","1")    
+        successful = True
+        try:
+            filename = "../data/US08_five.ged"
+            fam = Family(filename)
+            fam.create_family(filename)
+        except Exception:
+            successful = False
+        self.assertTrue(successful) 
 
 if __name__ == '__main__':
     unittest.main()
