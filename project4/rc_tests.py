@@ -54,19 +54,54 @@ class Test(unittest.TestCase):
             self.assertTrue(True)
 
     def test_US06_one(self):
-        self.assertEqual("1","1")
+        # valid family -- should pass
+        try:
+            filename = '../data/US06/US06_one.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(True)
+        except Exception:
+            self.assertTrue(False)
 
     def test_US06_two(self):
-        self.assertEqual("1","1")
+        # death before divorce -- should fail
+        try:
+            filename = '../data/US06/US06_two.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(False)
+        except Exception:
+            self.assertTrue(True)
 
     def test_US06_three(self):
-        self.assertEqual("1","1")
+        # death on divorce day -- should pass
+        try:
+            filename = '../data/US06/US06_three.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(False)
+        except Exception:
+            self.assertTrue(True)
 
     def test_US06_four(self):
-        self.assertEqual("1","1")
+        # death one month after divorce date -- should pass
+        try:
+            filename = '../data/US06/US06_four.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(True)
+        except Exception:
+            self.assertTrue(False)
 
     def test_US06_five(self):
-        self.assertEqual("1","1")    
+        # death one month before divorce date -- should fail
+        try:
+            filename = '../data/US06/US06_five.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(False)
+        except Exception:
+            self.assertTrue(True)
 
 if __name__ == '__main__':
     unittest.main()
