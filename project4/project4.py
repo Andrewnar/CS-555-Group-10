@@ -1,7 +1,8 @@
 import sys
 import pprint
 import collections
-import datetime
+from datetime import datetime
+from datetime import timedelta
 from datetime import date
 from collections import OrderedDict
 from prettytable import PrettyTable
@@ -77,14 +78,14 @@ class Family:
                 birth_date = datetime.strptime(info[2], '%d %b %Y').date()
 
                 # Check if death date is less than 150 years after birth date, error if not
-                if death_date - birth_date >= 150:
-                    raise Exception(f"Person [${id}]'s death date must be less than 150 years after birth date")
+                if death_date - birth_date >= timedelta(days=54750):
+                    raise Exception(f"Person [{id}]'s death date must be less than 150 years after birth date")
             else: # if the person is alive, check our living constraints
                 today = date.today() # get today's date
                 birth_date = datetime.strptime(info[2], '%d %b %Y').date() # get birth date
 
-                if today - birth_date >= 150:
-                    raise Exception(f"Person [${id}] must be less than 150 years old")
+                if today - birth_date >= timedelta(days=54750):
+                    raise Exception(f"Person [{id}] must be less than 150 years old")
         
         # US08 Birth before marriage of parents
         for (id, fam_info) in self.family.items(): # loop through all families
@@ -107,13 +108,13 @@ class Family:
 
                 # check if birthdate is > marriage date, error if not
                 if not birth_date > marriage_date:
-                    raise Exception(f"Child [${id}] should be born after parents' marriage")
+                    raise Exception(f"Child [{child}] should be born after parents' marriage")
                 
                 # if the family has been divorced, check the the divorce constraints
                 if divorced:
                     # if the child's birth date is greater than 9 months after the divorce date, error
                     if birth_date > constraint_date:
-                        raise Exception(f"Child [${id}]'s birth date must be no more than 9 months after parents' divorce")
+                        raise Exception(f"Child [{child}]'s birth date must be no more than 9 months after parents' divorce")
 
     def create_family(self, filename):
         people = self.people 
