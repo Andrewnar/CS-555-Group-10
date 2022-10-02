@@ -79,6 +79,9 @@ class Family:
             # married date = info[0]
             # husband id = info[2]
             # wife id = info[4]
+            if info[0] == 'N/A':
+                raise Exception(f"Error: Family [{id}] does not have a marriage date")
+
             marriage_date = datetime.strptime(info[0], '%d %b %Y').date()
             husband = self.people.get(info[2])
             wife = self.people.get(info[4])
