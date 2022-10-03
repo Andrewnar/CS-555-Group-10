@@ -11,9 +11,99 @@ class Test(unittest.TestCase):
     # US01
     #
 
+    def test_US01_one(self):
+        try:
+            filename = '../data/US01/US01_tests.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US01_two(self):
+        try:
+            filename = '../data/US01/US01_two.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US01_three(self):
+        try:
+            filename = '../data/US01/US01_three.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US01_four(self):
+        try:
+            filename = '../data/US01/US01_four.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US01_five(self):
+        try:
+            filename = '../data/US01/US01_five.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions == [])
+        except Exception:
+            self.assertTrue(False)
+
     #
     # US02
     #
+
+    def test_US02_one(self):
+        try:
+            filename = '../data/US02/US02_one.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US02_two(self):
+        try:
+            filename = '../data/US02/US02_two.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US02_three(self):
+        try:
+            filename = '../data/US02/US02_three.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions != [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US02_four(self):
+        try:
+            filename = '../data/US02/US02_four.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions == [])
+        except Exception:
+            self.assertTrue(False)
+
+    def test_US02_five(self):
+        try:
+            filename = '../data/US02/US02_five.ged'
+            family = Family(filename)
+            family.create_family(filename)
+            self.assertTrue(family.exceptions == [])
+        except Exception:
+            self.assertTrue(False)
 
     #
     # US03
@@ -25,7 +115,7 @@ class Test(unittest.TestCase):
             filename = '../data/US03/US03_one.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -35,9 +125,9 @@ class Test(unittest.TestCase):
             filename = '../data/US03/US03_two.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions != [])
         except Exception:
-            self.assertTrue(True)
+            self.assertTrue(False)
 
     def test_US03_three(self):
         # Maisy death on exact day of birth : pass
@@ -45,7 +135,7 @@ class Test(unittest.TestCase):
             filename = '../data/US03/US03_three.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -55,7 +145,7 @@ class Test(unittest.TestCase):
             filename = '../data/US03/US03_four.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions != [])
         except Exception:
             self.assertTrue(False)
 
@@ -65,9 +155,9 @@ class Test(unittest.TestCase):
             filename = '../data/US03/US03_five.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions != [])
         except Exception:
-            self.assertTrue(True)
+            self.assertTrue(False)
 
     #
     # US04
@@ -79,7 +169,7 @@ class Test(unittest.TestCase):
             filename = '../data/US04/US04_one.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -89,9 +179,9 @@ class Test(unittest.TestCase):
             filename = '../data/US04/US04_two.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions != [])
         except Exception:
-            self.assertTrue(True)
+            self.assertTrue(False)
 
     def test_US04_three(self):
         #  Daisy and Jim divorce happens 20 days after marriage : fail
@@ -99,9 +189,9 @@ class Test(unittest.TestCase):
             filename = '../data/US04/US04_three.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions != [])
         except Exception:
-            self.assertTrue(True)
+            self.assertTrue(False)
 
     def test_US04_four(self):
         # Daisy and Jim divorce 30 years after marriage : pass
@@ -109,7 +199,7 @@ class Test(unittest.TestCase):
             filename = '../data/US04/US04_four.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -119,9 +209,9 @@ class Test(unittest.TestCase):
             filename = '../data/US04/US04_five.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions != [])
         except Exception:
-            self.assertTrue(True)
+            self.assertTrue(False)
             
     #
     # US05
