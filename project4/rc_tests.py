@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
             filename = '../data/US05/US05_one.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -19,7 +19,7 @@ class Test(unittest.TestCase):
             filename = '../data/US05/US05_two.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
@@ -29,7 +29,7 @@ class Test(unittest.TestCase):
             filename = '../data/US05/US05_three.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
             filename = '../data/US05/US05_four.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -49,7 +49,7 @@ class Test(unittest.TestCase):
             filename = '../data/US05/US05_five.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
@@ -59,7 +59,7 @@ class Test(unittest.TestCase):
             filename = '../data/US06/US06_one.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -69,7 +69,7 @@ class Test(unittest.TestCase):
             filename = '../data/US06/US06_two.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
@@ -79,7 +79,7 @@ class Test(unittest.TestCase):
             filename = '../data/US06/US06_three.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
@@ -89,7 +89,7 @@ class Test(unittest.TestCase):
             filename = '../data/US06/US06_four.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(True)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(False)
 
@@ -99,7 +99,7 @@ class Test(unittest.TestCase):
             filename = '../data/US06/US06_five.ged'
             family = Family(filename)
             family.create_family(filename)
-            self.assertTrue(False)
+            self.assertTrue(family.exceptions == [])
         except Exception:
             self.assertTrue(True)
 
