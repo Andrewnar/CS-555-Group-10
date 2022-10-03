@@ -85,10 +85,10 @@ class Family:
             if person[5] != 'N/A':
                 death_date = datetime.strptime(person[5], '%d %b %Y').date()
                 if death_date > today:
-                    self.exceptions += [(f"Error (US01): INDIVIDUAL [{id}]: has death_date {death_date} that occurs in the future")]
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US01: [{id}]: has death_date {death_date} that occurs in the future")]
             # print(birthday, today, birthday > today) 
             if birthday > today:
-                self.exceptions += [(f"Error (US01): INDIVIDUAL [{id}]: has birthday {birthday} that occurs in the future")]
+                self.exceptions += [(f"ERROR: INDIVIDUAL: US01: [{id}]: has birthday {birthday} that occurs in the future")]
 
         for (id, family) in self.family.items():
             today = date.today()
@@ -96,19 +96,19 @@ class Family:
             if family[1] != 'N/A':
                 divorce = datetime.strptime(family[1], '%d %b %Y').date()
                 if divorce > today:
-                    self.exceptions += [(f"Error (US01): FAMILY [{id}]: has divorce {divorce} that occurs in the future")]
+                    self.exceptions += [(f"ERROR: FAMILY: US01: [{id}]: has divorce {divorce} that occurs in the future")]
             # print(birthday, today, birthday > today) 
             if marriage > today:
-                self.exceptions += [(f"Error (US01): FAMILY [{id}]: has marriage {marriage} that occurs in the future")]
+                self.exceptions += [(f"ERROR: FAMILY: US01: [{id}]: has marriage {marriage} that occurs in the future")]
 
             # US02 Birth should occur before marriage of individual
             husband, wife = family[2], family[4]
             husband_birth, wife_birth = datetime.strptime(self.people[husband][2], '%d %b %Y').date(), datetime.strptime(self.people[wife][2], '%d %b %Y').date()  
 
             if marriage < husband_birth :
-                self.exceptions += [(f"Error (US02): Family [{id}]: Individual [{family[2]}] has marriage {marriage} that occurs before birthdate {husband_birth}")]
+                self.exceptions += [(f"ERROR: FAMILY: US02: [{id}]: Individual [{family[2]}] has marriage {marriage} that occurs before birthdate {husband_birth}")]
             if marriage < wife_birth :
-                self.exceptions += [(f"Error (US02): Family [{id}]: Individual [{family[4]}] has marriage {marriage} that occurs before birthdate {wife_birth}")]
+                self.exceptions += [(f"ERROR: FAMILY: US02: [{id}]: Individual [{family[4]}] has marriage {marriage} that occurs before birthdate {wife_birth}")]
 
 
         
@@ -121,13 +121,13 @@ class Family:
                 birthday = datetime.strptime(person[2], '%d %b %Y').date()
                 death_date = datetime.strptime(person[5], '%d %b %Y').date() 
                 if (birthday-death_date).days > 0: # check if birthday is after the death day
-                   self.exceptions += [(f"Error: INDIVIDUAL [{id}] cannot have a death date that precedes a birth date")]
+                   self.exceptions += [(f"ERROR: INDIVIDUAL: US03: [{id}] cannot have a death date that precedes a birth date")]
 
         # US04 Marriage before divorce - ch
         for (id, info) in self.family.items():        
             # if there is no marriage dates in the family
             if info[0] == 'N/A':
-                self.exceptions += [(f"Error: Family [{id}] does not have a marriage date")]
+                self.exceptions += [(f"ERROR: FAMILY: US04:  [{id}] does not have a marriage date")]
 
             # if there is a divorce date
             if info[1] != 'N/A':
@@ -136,10 +136,10 @@ class Family:
                 divorce_date = datetime.strptime(info[1], '%d %b %Y').date()
                 # check if marriage comes after the divorce date
                 if((marriage_date - divorce_date).days > 0 ):
-                    self.exceptions += [(f"Error: Family [{id}] cannot get divorced before marriage")]
+                    self.exceptions += [(f"ERROR: FAMILY: US04: [{id}] cannot get divorced before marriage")]
                 # check if the divorce comes 30 days after the marriage date
                 if ((marriage_date - divorce_date).days > -30) : # check if the marriage date comes after the divorce date
-                        self.exceptions += [(f"Error: Family [{id}] can only get divorced 30 days after marriage")]
+                        self.exceptions += [(f"ERROR: FAMILY: US04: [{id}] can only get divorced 30 days after marriage")]
 
         # US05 Marriage before death - rc
         for (id, info) in self.family.items():
@@ -148,7 +148,7 @@ class Family:
             # husband id = info[2]
             # wife id = info[4]
             if info[0] == 'N/A':
-                self.exceptions += [(f"Error: Family [{id}] does not have a marriage date")]
+                self.exceptions += [(f"ERROR: FAMILY: US05: [{id}] does not have a marriage date")]
 
             marriage_date = datetime.strptime(info[0], '%d %b %Y').date()
             husband = self.people.get(info[2])
@@ -158,13 +158,13 @@ class Family:
                 #husband is dead
                 death_date = datetime.strptime(husband[5], '%d %b %Y').date()
                 if death_date < marriage_date:
-                    self.exceptions += [(f"Error: INDIVIDUAL [{info[2]}] can not be married after death.")]
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US05: [{info[2]}] can not be married after death.")]
     
             if wife[5] != 'N/A': #check wife
                 #wife is dead
                 death_date = datetime.strptime(wife[5], '%d %b %Y').date()
                 if death_date < marriage_date:
-                    self.exceptions += [(f"Error: INDIVIDUAL [{info[2]}] can not be married after death.")]
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US05: [{info[2]}] can not be married after death.")]
         
         # US06 Divorce before death - rc
         for (id, info) in self.family.items():
@@ -181,13 +181,13 @@ class Family:
                     #husband is dead
                     death_date = datetime.strptime(husband[5], '%d %b %Y').date()
                     if death_date < divorce_date:
-                        self.exceptions += [(f"Error: INDIVIDUAL [{info[2]}] can not get a divorce after death.")]
+                        self.exceptions += [(f"ERROR: INDIVIDUAL: US06: [{info[2]}] can not get a divorce after death.")]
     
                 if wife[5] != 'N/A': #check wife
                     #wife is dead
                     death_date = datetime.strptime(wife[5], '%d %b %Y').date()
                     if death_date < divorce_date:
-                        self.exceptions += [(f"Error: INDIVIDUAL [{info[2]}] can not get a divorce after death.")]
+                        self.exceptions += [(f"ERROR: INDIVIDUAL: US06: [{info[2]}] can not get a divorce after death.")]
 
         # US07 Less than 150 years old
         for (id, info) in self.people.items(): # loop through all persons
@@ -198,13 +198,13 @@ class Family:
 
                 # Check if death date is less than 150 years after birth date, error if not
                 if death_date - birth_date >= timedelta(days=54750):
-                    self.exceptions += [(f"INDIVIDUAL [{id}]'s death date must be less than 150 years after birth date")]
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US07: [{id}]'s death date must be less than 150 years after birth date")]
             else: # if the person is alive, check our living constraints
                 today = date.today() # get today's date
                 birth_date = datetime.strptime(info[2], '%d %b %Y').date() # get birth date
 
                 if today - birth_date >= timedelta(days=54750):
-                    self.exceptions += [(f"INDIVIDUAL [{id}] must be less than 150 years old")]
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US07: [{id}] must be less than 150 years old")]
         
         # US08 Birth before marriage of parents
         for (id, fam_info) in self.family.items(): # loop through all families
@@ -228,13 +228,13 @@ class Family:
 
                     # check if birthdate is > marriage date, error if not
                     if not birth_date > marriage_date:
-                        self.exceptions += [(f"Child [{child}] should be born after parents' marriage")]
+                        self.exceptions += [(f"ERROR: INDIVIDUAL: US08: Child [{child}] should be born after parents' marriage")]
                     
                     # if the family has been divorced, check the the divorce constraints
                     if divorced:
                         # if the child's birth date is greater than 9 months after the divorce date, error
                         if birth_date > constraint_date:
-                            self.exceptions += [(f"Child [{child}]'s birth date must be no more than 9 months after parents' divorce")]
+                            self.exceptions += [(f"ERROR: INDIVIDUAL: US08: Child [{child}]'s birth date must be no more than 9 months after parents' divorce")]
 
 
     def create_family(self, filename):
