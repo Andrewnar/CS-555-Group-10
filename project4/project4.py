@@ -73,7 +73,35 @@ class Family:
     def check_constraints(self):
         # This function will check the constraints defined by the user stories
 
-        #US05 Marriage before death - rc
+        # USO3 Birth before death - ch
+        for (id, person) in self.people.items():
+            # if there is a death date
+            if person[5] != 'N/A':
+                # get birth and death dates of each person
+                birthday = datetime.strptime(person[2], '%d %b %Y').date()
+                death_date = datetime.strptime(person[5], '%d %b %Y').date() 
+                if (birthday-death_date).days > 0: # check if birthday is after the death day
+                    raise Exception(f"Error: Person [{id}] cannot have a death date that precedes a birth date")
+
+        # US04 Marriage before divorce - ch
+        for (id, info) in self.family.items():        
+            # if there is no marriage dates in the family
+            if info[0] == 'N/A':
+                raise Exception(f"Error: Family [{id}] does not have a marriage date")
+
+            # if there is a divorce date
+            if info[1] != 'N/A':
+                # get the dates of the marriage and divorce
+                marriage_date = datetime.strptime(info[0], '%d %b %Y').date()
+                divorce_date = datetime.strptime(info[1], '%d %b %Y').date()
+                # check if marriage comes after the divorce date
+                if((marriage_date - divorce_date).days > 0 ):
+                    raise Exception(f"Error: Family [{id}] cannot get divorced before marriage")
+                # check if the divorce comes 30 days after the marriage date
+                if ((marriage_date - divorce_date).days > -30) : # check if the marriage date comes after the divorce date
+                        raise Exception(f"Error: Family [{id}] can only get divorced 30 days after marriage")
+
+        # US05 Marriage before death - rc
         for (id, info) in self.family.items():
             # in info:
             # married date = info[0]
@@ -98,7 +126,7 @@ class Family:
                 if death_date < marriage_date:
                     raise Exception(f"Error: Person [{info[2]}] can not be married after death.")
         
-        #US06 Divorce before death - rc
+        # US06 Divorce before death - rc
         for (id, info) in self.family.items():
             # in info:
             # divorce date = info[1]
@@ -276,7 +304,6 @@ class Family:
                     # tags will be handled at end --> self.gen_rest_args()
                     # this will loop through family and set children/spouses for individuals
                     pass
-
             
         self.people = people
         self.family = family

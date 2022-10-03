@@ -1,0 +1,89 @@
+0 NOTE Daisy and Jim get divorced 30 years after marriage : Pass
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 2 OCT 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME rchin6@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Jenny /Mason/
+2 GIVN Jenny
+2 SURN Mason
+2 _MARNM Mason
+1 SEX F
+1 BIRT
+2 DATE 8 FEB 2005
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Bill /Mason/
+2 GIVN Bill
+2 SURN Mason
+2 _MARNM Mason
+1 SEX M
+1 BIRT
+2 DATE 4 DEC 1976
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I3@ INDI
+1 NAME Mindy /Marvin/
+2 GIVN Mindy
+2 SURN Marvin
+2 _MARNM Mason
+1 SEX F
+1 BIRT
+2 DATE 17 MAR 1975
+1 FAMS @F1@
+0 @I4@ INDI
+1 NAME Maisy /Mason/
+2 GIVN Maisy
+2 SURN Mason
+2 _MARNM Mason
+1 SEX F
+1 BIRT
+2 DATE 5 MAY 2005
+1 FAMC @F1@
+0 @I5@ INDI
+1 NAME Jim /Mason/
+2 GIVN Jim
+2 SURN Mason
+2 _MARNM Mason
+1 SEX M
+1 BIRT
+2 DATE 16 JUN 1942
+1 FAMS @F2@
+0 @I6@ INDI
+1 NAME Daisy /Moovover/
+2 GIVN Daisy
+2 SURN Moovover
+2 _MARNM Mason
+1 SEX F
+1 BIRT
+2 DATE 17 AUG 1940
+1 FAMS @F2@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 CHIL @I4@
+1 MARR
+2 DATE 6 NOV 1998
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 CHIL @I2@
+1 MARR
+2 DATE 3 APR 1965
+1 DIV
+2 DATE 5 AUG 1995
+1 _CURRENT Y
+1 _PRIMARY Y
+0 TRLR

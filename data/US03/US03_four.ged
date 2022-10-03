@@ -1,0 +1,54 @@
+0 NOTE Daisy and Jim both have death dates after their birth dates
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 2
+1 DATE 2 OCT 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME rchin6@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Bozo /Drew/
+2 GIVN Bozo
+2 SURN Drew
+2 _MARNM Drew
+1 SEX M
+1 BIRT
+2 DATE 12 FEB 2000
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Jim /Drew/
+2 GIVN Dad
+2 SURN Drew
+2 _MARNM Drew
+1 SEX M
+1 BIRT
+2 DATE 16 MAR 1945
+1 DEAT Y
+2 DATE 9 JUN 2026
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Daisy /Moovover/
+2 GIVN Daisy
+2 SURN Moovover
+2 _MARNM Drew
+1 SEX F
+1 BIRT
+2 DATE 13 NOV 1946
+1 DEAT Y
+2 DATE 27 MAY 2023
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 11 JUL 1963
+1 _CURRENT Y
+1 _PRIMARY Y
+0 TRLR
