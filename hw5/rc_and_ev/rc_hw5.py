@@ -236,6 +236,35 @@ class Family:
                         if birth_date > constraint_date:
                             self.exceptions += [(f"ERROR: INDIVIDUAL: US08: Child [{child}]'s birth date must be no more than 9 months after parents' divorce")]
 
+        # US09 Child born before death of parents
+        # US10 Parents must be 14 years of age before marriage
+        for(id, family) in self.family.items():
+            fatherID, motherID = family[2], family[4]
+            if family[6] != 'N/A': # children
+                for child in family[6]:
+                    child_info = self.people[child]
+                    child_bday = datetime.strptime(child_info[2], '%d %b %Y').date()
+                    if not self.people[fatherID][4]: # father dead
+                        temp_bday_child = child_bday + relativedelta(months=9)
+                        if(temp_bday_child > datetime.strptime(self.people[fatherID][5], '%d %b %Y').date()):
+                            self.exceptions += [(f"ERROR: INDIVIDUAL: US09: Child [{child}] should be born [{child_bday}] atleast 9 months before father's death [{self.people[fatherID][5]}]")]
+
+                    if not self.people[motherID][4]: # mom dead
+                        if child_bday > datetime.strptime(self.people[motherID][5], '%d %b %Y').date():
+                            self.exceptions += [(f"ERROR: INDIVIDUAL: US09: Child [{child}] should be born [{child_bday}] before mother's death [{self.people[motherID][5]}]")]
+
+            married_date, dad_age, mom_age = datetime.strptime(family[0], '%d %b %Y').date(), datetime.strptime(self.people[fatherID][2], '%d %b %Y').date(), datetime.strptime(self.people[motherID][2], '%d %b %Y').date()
+            dad_marry_age, mom_marry_age = dad_age + relativedelta(months=168), mom_age + relativedelta(months=168)
+            # print(dad_marry_age > married_date, mom_marry_age)
+            if dad_marry_age > married_date:
+                 self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{fatherID}] should be 14 years older then marry date [{married_date}]")]
+            if mom_marry_age > married_date:
+                 self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
+
+
+            
+
+
 
     def create_family(self, filename):
         people = self.people 
@@ -352,7 +381,7 @@ class Family:
 
   
 if __name__ == '__main__':
-    filename = "../../data/US01/US01_tests.ged"
+    filename = "../../data/RyanClarkTestFamily.ged"
     andrew_fam = Family(filename)
     andrew_fam.create_family(filename)
     print(andrew_fam)
