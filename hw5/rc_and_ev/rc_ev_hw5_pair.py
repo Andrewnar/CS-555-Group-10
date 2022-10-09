@@ -396,7 +396,7 @@ class Family:
 
   
 if __name__ == '__main__':
-    filename = "../../data/RyanClarkTestFamily.ged"
+    filename = "../../data/US14/US14_three.ged"
     andrew_fam = Family(filename)
     andrew_fam.create_family(filename)
     print(andrew_fam)
