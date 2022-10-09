@@ -262,8 +262,23 @@ class Family:
                  self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
 
 
-            
+        # US14 Multiple Births <= 5
+        for (id, family) in self.family.items():
+            children = family[6] #children from one family
+            if (children != 'N/A'):
+                frequencies = {} #create frequency dict
+                for child in children:
+                    child_data = self.people.get(child) 
+                    #if child is in dictionary, increment, otherwise init to 1
+                    if child_data[2] in frequencies:
+                        frequencies[child_data[2]] += 1
+                    else:
+                        frequencies[child_data[2]] = 1
+                for (repeat_date, frequency) in frequencies.items():
+                    if (frequency > 5): #check if any frequency is up to 5
+                        self.exceptions += [(f"ERROR: FAMILY: US14: [{id}] No more than five siblings should be born at the same time. {frequency} were born on {repeat_date}")]
 
+            
 
 
     def create_family(self, filename):
