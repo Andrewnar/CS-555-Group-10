@@ -5,6 +5,7 @@ import collections
 from datetime import datetime
 from datetime import timedelta
 from datetime import date
+from collections import defaultdict
 from collections import OrderedDict
 from prettytable import PrettyTable
 from dateutil.relativedelta import relativedelta
@@ -261,8 +262,32 @@ class Family:
             if mom_marry_age > married_date:
                  self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
 
-
-            
+        # US11 No Bigamy
+        # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
+        bigamy_dict = defaultdict(list) # Individual_ID : [(start_marriage, end_marriage)]
+        for(id, family) in self.family.items():
+            married_date = datetime.strptime(family[0], '%d %b %Y').date()
+            divorced_date = date.today() if family[1] == "N/A" else datetime.strptime(family[1], '%d %b %Y').date()
+            bigamy_dict[family[2]] += [(married_date,divorced_date)]
+            bigamy_dict[family[4]] += [(married_date,divorced_date)]
+        today = date.today()
+        
+        # key : value --> id: [(start,end), (start,end)]
+        for id, date_range in bigamy_dict.items():
+            # date_range = [(start, end), (start, end)]
+            max_end = None
+            date_range = sorted(date_range)
+            for start, end in date_range:
+                if max_end == None:
+                    max_end = end
+                else:
+                    if start < max_end:
+                        self.exceptions += [(f"ERROR: INDIVIDUAL: US11: Individual [{id}] commited bigamy!")]
+                    if max_end < end:
+                        max_end == end
+                # change max_end
+                # Bob --> (1992, 2001), (2002, 2004), (2003, 2009)
+                # Mary --> (1992, 2001), (2005, 2008), ()
 
 
 
