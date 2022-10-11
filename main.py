@@ -290,6 +290,29 @@ class Family:
                 # Mary --> (1992, 2001), (2005, 2008), ()
 
 
+        # US12 Parents not too old
+        # loop through families
+        for(id, family) in self.family.items():
+            # mother +60, father +80
+            mother = family[4]
+            father = family[2]
+            children = family[6]
+            # get +80 father age, +60 mother age
+            dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
+            dad_age += relativedelta(months=960)
+            mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
+            mom_age += relativedelta(months=720)
+            child_age = 0
+            for child in children:
+                if child == 'N': break
+                child_age = datetime.strptime(self.people[child][2], '%d %b %Y').date()
+                if dad_age < child_age or mom_age < child_age:
+                    self.exceptions += [(f"ERROR: INDIVIDUAL: US12: Child [{child}]'s parents are too old!")]
+
+
+
+
+
 
     def create_family(self, filename):
         people = self.people 
