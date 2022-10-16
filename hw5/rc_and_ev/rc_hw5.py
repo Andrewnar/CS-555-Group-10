@@ -262,7 +262,43 @@ class Family:
                  self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
 
 
-            
+        # US13 Siblings spacing
+        for (id, family) in self.family.items():
+            children = family[6]
+            if (children != 'N/A'):
+                birthdays = []
+                for child in children:
+                    child_data = self.people.get(child)
+                    birthdays += [child_data[2]]
+                two_days = timedelta(days=2)
+                eight_months = timedelta(days=243)
+                for i in range(0,len(birthdays)):
+                    for j in range(i + 1,len(birthdays)):
+                        time_one = datetime.strptime(birthdays[i], '%d %b %Y').date()
+                        time_two = datetime.strptime(birthdays[j], '%d %b %Y').date()
+                        if time_one - time_two > two_days and time_one - time_two < eight_months:
+                                self.exceptions += [(f"ERROR: FAMILY: US13: Family [{id}]: Birth dates of siblings should be more than 8 months apart or less than 2 days apart")]
+                        if time_two - time_one > two_days and time_two - time_one < eight_months:
+                                self.exceptions += [(f"ERROR: FAMILY: US13: Family [{id}]: Birth dates of siblings should be more than 8 months apart or less than 2 days apart")]
+
+                
+
+
+        # US14 Multiple Births <= 5
+        for (id, family) in self.family.items():
+            children = family[6] #children from one family
+            if (children != 'N/A'):
+                frequencies = {} #create frequency dict
+                for child in children:
+                    child_data = self.people.get(child) 
+                    #if child is in dictionary, increment, otherwise init to 1
+                    if child_data[2] in frequencies:
+                        frequencies[child_data[2]] += 1
+                    else:
+                        frequencies[child_data[2]] = 1
+                for (repeat_date, frequency) in frequencies.items():
+                    if (frequency > 5): #check if any frequency is up to 5
+                        self.exceptions += [(f"ERROR: FAMILY: US14: [{id}] No more than five siblings should be born at the same time. {frequency} were born on {repeat_date}")]
 
 
 
@@ -381,7 +417,7 @@ class Family:
 
   
 if __name__ == '__main__':
-    filename = "../../data/RyanClarkTestFamily.ged"
+    filename = "../../data/US13/US13_three.ged"
     andrew_fam = Family(filename)
     andrew_fam.create_family(filename)
     print(andrew_fam)
