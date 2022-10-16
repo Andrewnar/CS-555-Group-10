@@ -291,22 +291,39 @@ class Family:
 
 
         # US12 Parents not too old
+        # helper to refactor and make getting parents ages easier
+        def getParentsAge(family):
+            mother = family[4]
+            father = family[2]
+            dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
+            mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
+            return [dad_age, mom_age]
+        
+        def calcAge(dad_age, mom_age, dad_increment, mom_increment):
+            return [dad_age+dad_increment, mom_age+mom_increment]
         # loop through families
         for(id, family) in self.family.items():
             # mother +60, father +80
-            mother = family[4]
-            father = family[2]
-            children = family[6]
+            # old code
+            # mother = family[4]
+            # father = family[2]
+            # dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
+            # mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
+            # dad_age = parents_age[0]
+            # mom_age = parents_age[1]
+            # dad_age += relativedelta(months=960)
+            # mom_age += relativedelta(months=720)
+
+            # refactored code 1. find parents age in separate function 2. calculate increments in age for parents
             # get +80 father age, +60 mother age
-            dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
-            dad_age += relativedelta(months=960)
-            mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
-            mom_age += relativedelta(months=720)
+            parents_age = getParentsAge(family)
+            newAges = calcAge(parents_age[0], parents_age[1], relativedelta(months=960), relativedelta(months=720))
+            children = family[6]
             child_age = 0
             for child in children:
                 if child == 'N': break
                 child_age = datetime.strptime(self.people[child][2], '%d %b %Y').date()
-                if dad_age < child_age or mom_age < child_age:
+                if newAges[0] < child_age or newAges[1] < child_age:
                     self.exceptions += [(f"ERROR: INDIVIDUAL: US12: Child [{child}]'s parents are too old!")]
 
         # US13 Siblings spacing
