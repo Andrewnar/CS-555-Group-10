@@ -1,0 +1,59 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 6
+1 DATE 15 OCT 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME evalent2@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Child /Surname/
+2 GIVN Child
+2 SURN Surname
+2 _MARNM Surname
+1 SEX M
+1 BIRT
+2 DATE 10 JUN 2000
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Father /Surname/
+2 GIVN Father
+2 SURN Surname
+2 _MARNM Surname
+1 SEX M
+1 BIRT
+2 DATE 5 SEP 1975
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Mother /Other/
+2 GIVN Mother
+2 SURN Other
+2 _MARNM Surname
+1 SEX F
+1 BIRT
+2 DATE 5 JUN 1975
+1 FAMS @F1@
+0 @I4@ INDI
+1 NAME Child2 /Surname2/
+2 GIVN Child2
+2 SURN Surname2
+2 _MARNM Surname2
+1 SEX M
+1 BIRT
+2 DATE 6 JUL 2002
+1 FAMC @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 CHIL @I4@
+1 MARR
+2 DATE 4 FEB 1998
+1 _CURRENT Y
+1 _PRIMARY Y
+0 TRLR

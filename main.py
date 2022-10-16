@@ -261,7 +261,40 @@ class Family:
             if mom_marry_age > married_date:
                  self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
 
+        # US14 Multiple Births <= 5
+        for (id, family) in self.family.items():
+            children = family[6] #children from one family
+            if (children != 'N/A'):
+                frequencies = {} #create frequency dict
+                for child in children:
+                    child_data = self.people.get(child) 
+                    #if child is in dictionary, increment, otherwise init to 1
+                    if child_data[2] in frequencies:
+                        frequencies[child_data[2]] += 1
+                    else:
+                        frequencies[child_data[2]] = 1
+                for (repeat_date, frequency) in frequencies.items():
+                    if (frequency > 5): #check if any frequency is up to 5
+                        self.exceptions += [(f"ERROR: FAMILY: US14: [{id}] No more than five siblings should be born at the same time. {frequency} were born on {repeat_date}")]
 
+        # US15 Fewer than 15 siblings
+        for id, family in self.family.items():
+            children = family[6] # get the children from the family
+            if children != 'N/A':
+                if len(children) > 15: # check constraint
+                    self.exceptions += [f"ERROR: FAMILY: US14: [{id}] There should be fewer than 15 siblings in a family. There are [{len(children)-1}] siblings in this family"]
+
+        # US16 Male last names
+        for id, family in self.family.items():
+            last_name = family[3].split(' ', 1)[1] # get last name of husband
+            children = family[6] # get the children from the family
+            if children != 'N/A':
+                for child_id in children:
+                    child = self.people[child_id]
+                    if child[1] == 'M':
+                        child_last = child[0].split(' ', 1)[1] # get last name of male child
+                        if last_name != child_last:
+                            self.exceptions += [f"ERROR: INDIVIDUAL: US15: [{id}] All male members of a family should have the same last name. Child [{child_id}] does not have the same last name as the father [{child_last}]"]
             
 
 
