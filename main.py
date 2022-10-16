@@ -309,6 +309,25 @@ class Family:
                 if dad_age < child_age or mom_age < child_age:
                     self.exceptions += [(f"ERROR: INDIVIDUAL: US12: Child [{child}]'s parents are too old!")]
 
+        # US13 Siblings spacing
+        for (id, family) in self.family.items():
+            children = family[6]
+            if (children != 'N/A'):
+                birthdays = []
+                for child in children:
+                    child_data = self.people.get(child)
+                    birthdays += [child_data[2]]
+                two_days = timedelta(days=2)
+                eight_months = timedelta(days=243)
+                for i in range(0,len(birthdays)):
+                    for j in range(i + 1,len(birthdays)):
+                        time_one = datetime.strptime(birthdays[i], '%d %b %Y').date()
+                        time_two = datetime.strptime(birthdays[j], '%d %b %Y').date()
+                        if time_one - time_two > two_days and time_one - time_two < eight_months:
+                                self.exceptions += [(f"ERROR: FAMILY: US13: Family [{id}]: Birth dates of siblings should be more than 8 months apart or less than 2 days apart")]
+                        if time_two - time_one > two_days and time_two - time_one < eight_months:
+                                self.exceptions += [(f"ERROR: FAMILY: US13: Family [{id}]: Birth dates of siblings should be more than 8 months apart or less than 2 days apart")]
+
         # US14 Multiple Births <= 5
         for (id, family) in self.family.items():
             children = family[6] #children from one family
