@@ -21,11 +21,17 @@ class Test(unittest.TestCase):
         fam.create_family(filename)
         self.assertTrue(fam.exceptions != [])
 
-    def test_US05_four(self):
-        self.assertTrue(True)
+    def test_US14_four(self):
+        filename = "../../data/US14/US14_four.ged"
+        fam = Family(filename)
+        fam.create_family(filename)
+        self.assertTrue(fam.exceptions == [])
 
-    def test_US05_five(self):
-        self.assertTrue(True)
+    def test_US14_five(self):
+        filename = "../../data/US14/US14_five.ged"
+        fam = Family(filename)
+        fam.create_family(filename)
+        self.assertTrue(fam.exceptions != [])
 
     
 
