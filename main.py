@@ -367,7 +367,7 @@ class Family:
             children = family[6] # get the children from the family
             if children != 'N/A':
                 if len(children) > 15: # check constraint
-                    self.exceptions += [f"ERROR: FAMILY: US14: [{id}] There should be fewer than 15 siblings in a family. There are [{len(children)-1}] siblings in this family"]
+                    self.exceptions += [f"ERROR: FAMILY: US15: [{id}] There should be fewer than 15 siblings in a family. There are [{len(children)-1}] siblings in this family"]
 
         # US16 Male last names
         for id, family in self.family.items():
@@ -379,7 +379,7 @@ class Family:
                     if child[1] == 'M':
                         child_last = child[0].split(' ', 1)[1] # get last name of male child
                         if last_name != child_last:
-                            self.exceptions += [f"ERROR: INDIVIDUAL: US15: [{id}] All male members of a family should have the same last name. Child [{child_id}] does not have the same last name as the father [{child_last}]"]
+                            self.exceptions += [f"ERROR: INDIVIDUAL: US16: [{id}] All male members of a family should have the same last name. Child [{child_id}] does not have the same last name as the father [{child_last}]"]
             
 
 
