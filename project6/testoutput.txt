@@ -1,0 +1,76 @@
++-----+-------------------+--------+-------------+-----+-------+-------------+------------------------------------+--------+
+|  ID |        Name       | Gender |   Birthday  | Age | Alive |    Death    |               Child                | Spouse |
++-----+-------------------+--------+-------------+-----+-------+-------------+------------------------------------+--------+
+|  I1 |    Ryan /Clark/   |   M    | 25 JAN 2002 |  20 |  True |     N/A     |                N/A                 |  N/A   |
+|  I2 |    Tom /Clark/    |   M    |  6 JAN 2022 |  0  |  True |     N/A     |         ['I1', 'I4', 'I5']         |   I3   |
+|  I3 |   Diane /Hogan/   |   F    | 18 NOV 1966 |  55 |  True |     N/A     |         ['I1', 'I4', 'I5']         |   I2   |
+|  I4 |    Sean /Clark/   |   M    | 16 DEC 1995 |  26 |  True |     N/A     |                N/A                 |  N/A   |
+|  I5 |  Kristen /Clark/  |   F    | 30 MAR 1998 |  24 |  True |     N/A     |                N/A                 |  N/A   |
+|  I6 |   Thomas /Clark/  |   M    |  6 OCT 1935 |  87 | False | 18 AUG 2020 | ['I2', 'I10', 'I12', 'I14', 'I15'] |  N/A   |
+|  I7 | Eleanor /Yescott/ |   F    |  9 OCT 1937 |  85 |  True |     N/A     | ['I2', 'I10', 'I12', 'I14', 'I15'] |  N/A   |
+|  I8 |   Edward /Hogan/  |   M    |  6 JUN 1922 | 100 | False | 27 NOV 2007 |        ['I3', 'I16', 'I18']        |   I9   |
+|  I9 |    Anne /Hogan/   |   F    | 10 APR 1929 |  93 |  True |     N/A     |        ['I3', 'I16', 'I18']        |   I8   |
+| I10 |    Matt /Clark/   |   M    |  8 NOV 1977 |  44 |  True |     N/A     |           ['I20', 'I21']           |  I11   |
+| I11 |   Maura /Clark/   |   F    |  6 AUG 1975 |  47 |  True |     N/A     |           ['I20', 'I21']           |  I10   |
+| I12 |   Suzie /Clark/   |   F    |  2 JUN 1966 |  56 |  True |     N/A     |       ['I22', 'I23', 'I25']        |  I13   |
+| I13 | Steve /Guirlando/ |   M    | 10 FEB 1963 |  59 |  True |     N/A     |       ['I22', 'I23', 'I25']        |  I12   |
+| I14 |    Lisa /Clark/   |   F    |  7 MAY 1960 |  62 |  True |     N/A     |                 []                 |  I33   |
+| I15 |   Cindy /Clark/   |   F    | 28 JAN 1958 |  64 |  True |     N/A     |           ['I30', 'I31']           |  I28   |
+| I16 |    Kipp /Hogan/   |   M    |  8 MAR 1955 |  67 |  True |     N/A     |       ['I26', 'I27', 'I36']        |  N/A   |
+| I17 |   Laurie /Hogan/  |   F    | 10 DEC 1958 |  63 |  True |     N/A     |       ['I26', 'I27', 'I36']        |  N/A   |
+| I18 |    Mark /Hogan/   |   M    |  5 JAN 1956 |  66 |  True |     N/A     |                 []                 |  I19   |
+| I19 |  Allison /Hogan/  |   F    |  7 OCT 1950 |  72 |  True |     N/A     |                 []                 |  I18   |
+| I20 |  Jackson /Clark/  |   M    |  5 OCT 2024 |  -2 |  True |     N/A     |                N/A                 |  N/A   |
+| I21 |   Harper /Clark/  |   F    |  7 JUL 2018 |  4  | False |  8 NOV 2017 |                N/A                 |  N/A   |
+| I22 | Brian /Guirlando/ |   M    |  6 JUL 1989 |  33 |  True |     N/A     |                N/A                 |  N/A   |
+| I23 |  Kim /Guirlando/  |   F    |  7 DEC 2001 |  20 |  True |     N/A     |                 []                 |  I24   |
+| I24 |   Scott /Ritter/  |   M    |  4 SEP 1985 |  37 |  True |     N/A     |                 []                 |  I23   |
+| I25 | Steph /Guirlando/ |   F    |  2 FEB 1995 |  27 |  True |     N/A     |                N/A                 |  N/A   |
+| I26 |   Marcie /Hogan/  |   F    | 16 NOV 2001 |  20 |  True |     N/A     |                N/A                 |  N/A   |
+| I27 |    Sam /Hogan/    |   M    |  6 SEP 2005 |  17 |  True |     N/A     |                N/A                 |  N/A   |
+| I28 |   Arty /Teitler/  |   M    | 14 DEC 1957 |  64 | False |  9 AUG 1984 |                 []                 |  I15   |
+| I29 |   Rodger /Smith/  |   M    |  8 AUG 1960 |  62 |  True |     N/A     |           ['I30', 'I31']           |  I15   |
+| I30 |  Rebecca /Smith/  |   F    |  9 OCT 2004 |  18 |  True |     N/A     |                N/A                 |  N/A   |
+| I31 |   Robert /Smith/  |   M    | 29 OCT 2006 |  15 |  True |     N/A     |                N/A                 |  N/A   |
+| I32 |    Jeff /Jones/   |   M    |  8 NOV 1962 |  59 |  True |     N/A     |                 []                 |  N/A   |
+| I33 |   Todd /Gurley/   |   M    |  7 AUG 1960 |  62 |  True |     N/A     |                 []                 |  I14   |
+| I34 |  Dadanne /Smith/  |   M    |  5 AUG 1850 | 172 |  True |     N/A     |               ['I9']               |  I35   |
+| I35 |  Momanne /Smith/  |   F    |  1 JAN 1800 | 222 | False | 10 MAY 1960 |               ['I9']               |  I34   |
+| I36 |    Olaf /Hogan/   |   M    |  1 NOV 2015 |  6  |  True |     N/A     |                N/A                 |  N/A   |
++-----+-------------------+--------+-------------+-----+-------+-------------+------------------------------------+--------+
++-----+-------------+------------+------------+-------------------+---------+-------------------+------------------------------------+
+|  ID |   Married   |  Divorced  | Husband ID |    Husband Name   | Wife ID |     Wife Name     |              Children              |
++-----+-------------+------------+------------+-------------------+---------+-------------------+------------------------------------+
+|  F1 | 11 JUL 1992 |    N/A     |     I2     |    Tom /Clark/    |    I3   |   Diane /Hogan/   |         ['I1', 'I4', 'I5']         |
+|  F2 |  3 JUN 1952 | 5 JUN 2021 |     I6     |   Thomas /Clark/  |    I7   | Eleanor /Yescott/ | ['I2', 'I10', 'I12', 'I14', 'I15'] |
+|  F3 | 18 MAY 1950 |    N/A     |     I8     |   Edward /Hogan/  |    I9   |    Anne /Hogan/   |        ['I3', 'I16', 'I18']        |
+|  F4 |  4 JUN 1950 |    N/A     |    I34     |  Dadanne /Smith/  |   I35   |  Momanne /Smith/  |               ['I9']               |
+|  F5 | 12 OCT 2012 |    N/A     |    I10     |    Matt /Clark/   |   I11   |   Maura /Clark/   |           ['I20', 'I21']           |
+|  F6 | 14 NOV 1987 |    N/A     |    I13     | Steve /Guirlando/ |   I12   |   Suzie /Clark/   |       ['I22', 'I23', 'I25']        |
+|  F7 |  7 OCT 2000 |    N/A     |    I33     |   Todd /Gurley/   |   I14   |    Lisa /Clark/   |                N/A                 |
+|  F8 |  8 OCT 1999 | 1 JUL 1999 |    I32     |    Jeff /Jones/   |   I14   |    Lisa /Clark/   |                N/A                 |
+|  F9 |  7 SEP 2000 |    N/A     |    I29     |   Rodger /Smith/  |   I15   |   Cindy /Clark/   |           ['I30', 'I31']           |
+| F10 |  8 OCT 1985 |    N/A     |    I28     |   Arty /Teitler/  |   I15   |   Cindy /Clark/   |                N/A                 |
+| F11 |  6 SEP 1980 | 1 JAN 2015 |    I16     |    Kipp /Hogan/   |   I17   |   Laurie /Hogan/  |       ['I26', 'I27', 'I36']        |
+| F12 |  5 MAY 1980 |    N/A     |    I18     |    Mark /Hogan/   |   I19   |  Allison /Hogan/  |                N/A                 |
+| F13 | 26 AUG 2000 |    N/A     |    I24     |   Scott /Ritter/  |   I23   |  Kim /Guirlando/  |                N/A                 |
++-----+-------------+------------+------------+-------------------+---------+-------------------+------------------------------------+
+ERROR: INDIVIDUAL: US01: [I20]: has birthday 2024-10-05 that occurs in the future
+ERROR: FAMILY: US02: [F1]: Individual [I2] has marriage 1992-07-11 that occurs before birthdate 2022-01-06
+ERROR: FAMILY: US02: [F13]: Individual [I23] has marriage 2000-08-26 that occurs before birthdate 2001-12-07
+ERROR: INDIVIDUAL: US03: [I21] cannot have a death date that precedes a birth date
+ERROR: FAMILY: US04: [F8] cannot get divorced before marriage
+ERROR: FAMILY: US04: [F8] can only get divorced 30 days after marriage
+ERROR: INDIVIDUAL: US05: [I28] can not be married after death.
+ERROR: INDIVIDUAL: US06: [I6] can not get a divorce after death.
+ERROR: INDIVIDUAL: US07: [I34] must be less than 150 years old
+ERROR: INDIVIDUAL: US07: [I35]'s death date must be less than 150 years after birth date
+ERROR: INDIVIDUAL: US08: Child [I9] should be born after parents' marriage
+ERROR: INDIVIDUAL: US08: Child [I36]'s birth date must be no more than 9 months after parents' divorce
+ERROR: INDIVIDUAL: US09: Child [I2] should be born [2022-01-06] atleast 9 months before father's death [18 AUG 2020]
+ERROR: INDIVIDUAL: US10: Individual [I2] should be 14 years older then marry date [1992-07-11]
+ERROR: INDIVIDUAL: US10: Individual [I23] should be 14 years older then marry date [2000-08-26]
+ERROR: INDIVIDUAL: US11: Individual [I15] commited bigamy!
+ERROR: INDIVIDUAL: US12: Child [I2]'s parents are too old!
+ERROR: INDIVIDUAL: US12: Child [I9]'s parents are too old!
+

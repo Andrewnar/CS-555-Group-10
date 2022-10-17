@@ -239,6 +239,7 @@ class Family:
 
         # US09 Child born before death of parents
         # US10 Parents must be 14 years of age before marriage
+        temp_exceptions = []
         for(id, family) in self.family.items():
             fatherID, motherID = family[2], family[4]
             if family[6] != 'N/A': # children
@@ -258,10 +259,10 @@ class Family:
             dad_marry_age, mom_marry_age = dad_age + relativedelta(months=168), mom_age + relativedelta(months=168)
             # print(dad_marry_age > married_date, mom_marry_age)
             if dad_marry_age > married_date:
-                 self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{fatherID}] should be 14 years older then marry date [{married_date}]")]
+                 temp_exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{fatherID}] should be 14 years older then marry date [{married_date}]")]
             if mom_marry_age > married_date:
-                 self.exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
-
+                 temp_exceptions += [(f"ERROR: INDIVIDUAL: US10: Individual [{motherID}] should be 14 years older then marry date [{married_date}]")]
+        self.exceptions += temp_exceptions
         # US11 No Bigamy
         # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
         bigamy_dict = defaultdict(list) # Individual_ID : [(start_marriage, end_marriage)]

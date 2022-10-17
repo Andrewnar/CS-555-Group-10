@@ -1,4 +1,6 @@
-from project4 import Family
+import sys
+sys.path.insert(1, '../')
+from main import Family
 import sys
 
 if __name__ == '__main__':
