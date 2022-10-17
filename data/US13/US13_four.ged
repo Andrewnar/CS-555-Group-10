@@ -1,8 +1,8 @@
 0 HEAD
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
-1 FILE Family 4
-1 DATE 16 OCT 2022
+1 FILE Family 5
+1 DATE 17 OCT 2022
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
@@ -12,11 +12,11 @@
 1 SUBN
 1 CHAR UTF-8
 0 @I1@ INDI
-1 NAME Child /One/
+1 NAME Child /Family/
 2 GIVN Child
-2 SURN One
+2 SURN Family
 2 _MARNM One
-1 SEX M
+1 SEX F
 1 BIRT
 2 DATE 16 DEC 2004
 1 FAMC @F1@
@@ -39,20 +39,20 @@
 2 DATE 18 NOV 1966
 1 FAMS @F1@
 0 @I4@ INDI
-1 NAME Child /Two/
+1 NAME Child /Family/
 2 GIVN Child
-2 SURN Two
+2 SURN Family
 2 _MARNM Two
 1 SEX F
 1 BIRT
 2 DATE 30 MAR 1998
 1 FAMC @F1@
 0 @I5@ INDI
-1 NAME Child /Three/
+1 NAME Child /Family/
 2 GIVN Child
-2 SURN Three
+2 SURN Family
 2 _MARNM Three
-1 SEX M
+1 SEX F
 1 BIRT
 2 DATE 25 JAN 1995
 1 FAMC @F1@
@@ -61,7 +61,7 @@
 2 GIVN Child Four
 2 SURN Family
 2 _MARNM Four
-1 SEX M
+1 SEX F
 1 BIRT
 2 DATE 9 JUL 2000
 1 FAMC @F1@
