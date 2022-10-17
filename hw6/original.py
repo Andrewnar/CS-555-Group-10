@@ -37,8 +37,6 @@ class Family:
         # people = collections.OrderedDict(sorted(self.people.items()))
         # family = collections.OrderedDict(sorted(self.family.items()))
 
-        self.sortDict()
-
         t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
         for key, val in self.people.items():
             t.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]])
@@ -52,33 +50,6 @@ class Family:
         for excep in self.exceptions:
             print(excep)
         return ""
-
-    def sortDict(self):
-        temp_peeps = {}
-        temp_fam = {}
-
-        for k, v in self.people.items():
-            k = int(k[1:]) # removes 'I'
-            temp_peeps[k] = v
-
-        for k, v in self.family.items():
-            k = int(k[1:]) # removes 'F'
-            temp_fam[k] = v
-
-        self.people = collections.OrderedDict(sorted(temp_peeps.items()))
-        self.family = collections.OrderedDict(sorted(temp_fam.items()))
-
-        temp_peeps, temp_fam = {}, {}
-
-        for k, v in self.people.items():
-            k = "I" + str(k) # adds 'I'
-            temp_peeps[k] = v
-
-        for k, v in self.family.items():
-            k = "F" + str(k) # adds 'F'
-            temp_fam[k] = v
-
-        self.people, self.family = temp_peeps, temp_fam
     
 
     def gen_rest_args(self):

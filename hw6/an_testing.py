@@ -2,6 +2,7 @@ import sys
 import time
 import pprint
 import collections
+from collections import OrderedDict
 from datetime import datetime
 from datetime import timedelta
 from datetime import date
@@ -11,9 +12,9 @@ from prettytable import PrettyTable
 from dateutil.relativedelta import relativedelta
 
 # 
-printToFile = False
+printToFile = True
 if printToFile:
-    f = open('project3output.txt','w')
+    f = open('hw6/output.txt','w')
     sys.stdout = f  
 
 def calc_age(birthdate):
@@ -34,26 +35,9 @@ class Family:
 
     def __str__(self):
         # To sort dictionary by key we can also make it an order dict and apply
-        # people = collections.OrderedDict(sorted(self.people.items()))
-        # family = collections.OrderedDict(sorted(self.family.items()))
+        # self.people = collections.OrderedDict(sorted(self.people.items()))
+        # self.family = collections.OrderedDict(sorted(self.family.items()))
 
-        self.sortDict()
-
-        t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
-        for key, val in self.people.items():
-            t.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]])
-        print(t)
-
-        f = PrettyTable(['ID', 'Married', 'Divorced', 'Husband ID', 'Husband Name', 'Wife ID', 'Wife Name', 'Children'])
-        for key, val in self.family.items():
-            f.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6]])
-        print(f)
-
-        for excep in self.exceptions:
-            print(excep)
-        return ""
-
-    def sortDict(self):
         temp_peeps = {}
         temp_fam = {}
 
@@ -79,6 +63,21 @@ class Family:
             temp_fam[k] = v
 
         self.people, self.family = temp_peeps, temp_fam
+
+
+        t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
+        for key, val in self.people.items():
+            t.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]])
+        print(t)
+
+        f = PrettyTable(['ID', 'Married', 'Divorced', 'Husband ID', 'Husband Name', 'Wife ID', 'Wife Name', 'Children'])
+        for key, val in self.family.items():
+            f.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6]])
+        print(f)
+
+        for excep in self.exceptions:
+            print(excep)
+        return ""
     
 
     def gen_rest_args(self):
