@@ -118,6 +118,10 @@ class Family:
     def check_constraints(self):
         # This function will check the constraints defined by the user stories
 
+        ##############
+        ## SPRINT 1 ##
+        ##############
+
         # US01 Dates shouldn't be after current date - an
         for (id, person) in self.people.items():
             today = date.today()
@@ -272,6 +276,10 @@ class Family:
                         if birth_date > constraint_date:
                             self.exceptions += [(f"ERROR: INDIVIDUAL: US08: Child [{child}]'s birth date must be no more than 9 months after parents' divorce")]
 
+        ##############
+        ## SPRINT 2 ##
+        ##############
+
         # US09 Child born before death of parents
         # US10 Parents must be 14 years of age before marriage
         temp_exceptions = []
@@ -415,7 +423,49 @@ class Family:
                         child_last = child[0].split(' ', 1)[1] # get last name of male child
                         if last_name != child_last:
                             self.exceptions += [f"ERROR: INDIVIDUAL: US16: [{id}] All male members of a family should have the same last name. Child [{child_id}] does not have the same last name as the father [{child_last}]"]
-            
+
+        ##############
+        ## SPRINT 3 ##
+        ##############
+        
+        # US17 No marriages to descendants
+
+        # US18 Siblings should not marry
+
+        # US19 First cousins should not marry
+
+        # US20 Aunts and uncles
+
+        # US21 Correct gender for role
+        # Husband in family should be male and wife in family should be female
+        for id, family in self.family.items():
+            husband = self.people.get(family[2])
+            wife = self.people.get(family[4])
+            if husband[1] != 'M':
+                self.exceptions += [f"ERROR: FAMILY: US21: [{id}] Husband must be male"]
+            if wife[1] != 'F':
+                self.exceptions += [f"ERROR: FAMILY: US21: [{id}] Wife must be female"]
+
+        # US22 Unique IDs
+        # All individual IDs should be unique and lal family IDs should be unique
+        # check for duplicate family ids
+        family_ids = []
+        for id, family in self.family.items():
+            if id in family_ids:
+                self.exceptions += [f"ERROR: FAMILY: US22: [{id}] Cannot have duplicate family ids"]
+            else:
+                family_ids += [id]
+        # check for duplicate person ids
+        person_ids = []
+        for id, info in self.people.items():
+            if id in person_ids:
+                self.exceptions += [f"ERROR: INDIVIDUAL: US22: [{id}] Cannot have duplicate person ids"]
+            else:
+                person_ids += [id]
+
+        # US23 Unique name and birth date
+
+        # US24 Unique families by spouses
 
 
     def create_family(self, filename):
