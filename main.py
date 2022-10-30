@@ -1,3 +1,4 @@
+from re import M
 import sys
 import time
 import pprint
@@ -464,8 +465,32 @@ class Family:
                 person_ids += [id]
 
         # US23 Unique name and birth date
-
+        name_bday = {} # keep track of name,bday pairings we've seen
+        for id, info in self.people.items():
+            bday = info[2] # get birthday
+            name = info[0] # get name
+            if bday in name_bday: # check if we've seen this birthday before
+                if name in name_bday[bday]: # check if there is already an occurance of this name on this birthday, error if so
+                    self.exceptions += [f"ERROR: INDIVIDUAL: US23: [{id}] Cannot have multiple people with the same name and birthday"]
+                else: # add this name to this birthday if not
+                    name_bday[bday].append(name)
+            else: # add this birthday with the name to the dictionary
+                name_bday[bday] = [name]
+        
         # US24 Unique families by spouses
+        spouse_date = {} # keep track of spouse,marriage date pairings we've seen
+        for id, info in self.family.items():
+            marriage_date = info[0] # get marriage date
+            husband_name = info[3] # get husband's name
+            wife_name = info[5] # get wife's name
+            spouses = (husband_name, wife_name) # get spouses together as a tuple
+            if marriage_date in spouse_date: # check if we've seen this marriage date before
+                if spouses in spouse_date[marriage_date]: # check if we've seen these spouses on this date, error if so
+                    self.exceptions += [f"ERROR: FAMILY: US24: [{id}] Cannot have multiple marriages with the same spouses and marriage date"]
+                else: # add these spouses to this marriage date if not
+                    spouse_date[marriage_date].append(spouses)
+            else: # add this marriage date to the dictionary
+                spouse_date[marriage_date] = [spouses]
 
 
     def create_family(self, filename):
