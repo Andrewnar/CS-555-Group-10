@@ -2,7 +2,6 @@ import sys
 import time
 import pprint
 import collections
-from collections import OrderedDict
 from datetime import datetime
 from datetime import timedelta
 from datetime import date
@@ -12,9 +11,9 @@ from prettytable import PrettyTable
 from dateutil.relativedelta import relativedelta
 
 # 
-printToFile = True
+printToFile = False
 if printToFile:
-    f = open('hw6/output.txt','w')
+    f = open('hw6/an/output.txt','w')
     sys.stdout = f  
 
 def calc_age(birthdate):
@@ -35,35 +34,8 @@ class Family:
 
     def __str__(self):
         # To sort dictionary by key we can also make it an order dict and apply
-        # self.people = collections.OrderedDict(sorted(self.people.items()))
-        # self.family = collections.OrderedDict(sorted(self.family.items()))
-
-        temp_peeps = {}
-        temp_fam = {}
-
-        for k, v in self.people.items():
-            k = int(k[1:]) # removes 'I'
-            temp_peeps[k] = v
-
-        for k, v in self.family.items():
-            k = int(k[1:]) # removes 'F'
-            temp_fam[k] = v
-
-        self.people = collections.OrderedDict(sorted(temp_peeps.items()))
-        self.family = collections.OrderedDict(sorted(temp_fam.items()))
-
-        temp_peeps, temp_fam = {}, {}
-
-        for k, v in self.people.items():
-            k = "I" + str(k) # adds 'I'
-            temp_peeps[k] = v
-
-        for k, v in self.family.items():
-            k = "F" + str(k) # adds 'F'
-            temp_fam[k] = v
-
-        self.people, self.family = temp_peeps, temp_fam
-
+        # people = collections.OrderedDict(sorted(self.people.items()))
+        # family = collections.OrderedDict(sorted(self.family.items()))
 
         t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
         for key, val in self.people.items():
@@ -78,12 +50,115 @@ class Family:
         for excep in self.exceptions:
             print(excep)
         return ""
-    
 
-    def gen_rest_args(self):
-        # Will update spouses and children for individuals
+    def create_family(self, filename):
         people = self.people 
         family = self.family
+        filename = self.file
+
+        # Valid Tags { Tag : Level }
+        validDict = { "INDI": 0, "NAME": 1,"SEX": 1,"BIRT":1,"DEAT":1,"FAMC":1,"FAMS":1,"FAM":0,
+                    "MARR":1,"HUSB":1,"WIFE":1,"CHIL":1,"DIV":1,"DATE":2,"HEAD":0,"TRLR":0,"NOTE":0 } 
+
+        with open(filename) as file:
+            curr_person = None
+            curr_family = None
+            prev_tag = None
+
+            for line in file:
+                line = line.replace('@', "")
+                line = line.rstrip().split()
+
+
+                # handles when arguemnt and tag are swapped bc of exception listed in proejct 2
+                if len(line) > 2 and (line[2] == 'INDI' or line[2] == 'FAM'):
+                    line[1], line[2] = line[2], line[1]
+
+                # if tag + level isn't valid, continue
+                level, tag = int(line[0]), line[1] 
+                if tag not in validDict or level != validDict[tag]:
+                    continue
+                
+                # set rest of arguments to be a str
+                args = ' '.join(line[2:])
+
+                # BEGIN FILLING OUT PERSONS/FAMILIES
+
+                if level == 0: # Indicates a new record...
+                    if tag == "INDI":
+                        # New Person
+                        curr_person = args
+                        people[curr_person] = ["N/A"] * 8
+                        continue 
+
+                    if tag == "FAM":
+                        # New Family
+                        curr_family = args
+                        family[curr_family] = ["N/A"] * 7
+                        continue
+
+
+                # reference = ["NAME", "SEX", "BIRT", "AGE", "DEATH","CHILD","SPOUSE"]
+                if tag == "NAME":
+                    people[curr_person][0] = args
+                if tag == "SEX":
+                    people[curr_person][1] = args
+
+                if tag in ["BIRT", "DEAT", "MARR", "DIV"]: # need to save tag so we know where to store date
+                    prevTag = tag
+                    continue
+                
+                if tag == "DATE": 
+                    if prevTag in ["BIRT", "DEAT"]:
+                        # part of person
+                        if prevTag == "BIRT": # have to fill age
+                            months = ["", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+                            age = calc_age(date(int(line[4]), months.index(line[3]), int(line[2])))
+                            people[curr_person][2] = args
+                            people[curr_person][3] = age
+                            people[curr_person][4] = True
+
+                        if prevTag == "DEAT":
+                            # TODO update age so it calculates based on death not simply birth
+                            people[curr_person][4] = False
+                            people[curr_person][5] = args 
+                    else:
+                        # part of family
+                        # TODO create flags for if prevTag is MARR or DIV and fill out for each
+                        if prevTag == "MARR":
+                            family[curr_family][0] = args
+                        if prevTag == "DIV":
+                            family[curr_family][1] = args
+
+                        
+
+                # TODO Update Family Collection
+                # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
+
+                if tag == "HUSB" or tag == "WIFE":
+                    #TODO individual_id of husband of family...
+                    temp_id = 2
+                    temp_name = 3
+                    if tag == "WIFE":
+                        temp_id = 4
+                        temp_name = 5
+                    family[curr_family][temp_id] = args
+                    family[curr_family][temp_name] = people[args][0]
+
+                if tag == "CHIL":
+                    #TODO Indiviudal_id of CHIL of family
+                    children = family[curr_family][6]
+                    if children == "N/A":
+                        children = []
+                    children += [args]
+
+                    family[curr_family][6] = children 
+                    
+                if tag == "FAMC" or tag == "FAMS":
+                    # tags will be handled at end --> self.gen_rest_args()
+                    # this will loop through family and set children/spouses for individuals
+                    pass
+            
         for family_id, args in family.items():
             if args[1] == "N/A":
                 # Marriage without divorce... curr spouse!
@@ -102,10 +177,6 @@ class Family:
 
         self.people = people
         self.family = family
-
-
-    def check_constraints(self):
-        # This function will check the constraints defined by the user stories
 
         # US01 Dates shouldn't be after current date - an
         for (id, person) in self.people.items():
@@ -408,122 +479,7 @@ class Family:
                         child_last = child[0].split(' ', 1)[1] # get last name of male child
                         if last_name != child_last:
                             self.exceptions += [f"ERROR: INDIVIDUAL: US16: [{id}] All male members of a family should have the same last name. Child [{child_id}] does not have the same last name as the father [{child_last}]"]
-            
-
-
-
-    def create_family(self, filename):
-        people = self.people 
-        family = self.family
-        filename = self.file
-
-        # Valid Tags { Tag : Level }
-        validDict = { "INDI": 0, "NAME": 1,"SEX": 1,"BIRT":1,"DEAT":1,"FAMC":1,"FAMS":1,"FAM":0,
-                    "MARR":1,"HUSB":1,"WIFE":1,"CHIL":1,"DIV":1,"DATE":2,"HEAD":0,"TRLR":0,"NOTE":0 } 
-
-        with open(filename) as file:
-            curr_person = None
-            curr_family = None
-            prev_tag = None
-
-            for line in file:
-                line = line.replace('@', "")
-                line = line.rstrip().split()
-
-
-                # handles when arguemnt and tag are swapped bc of exception listed in proejct 2
-                if len(line) > 2 and (line[2] == 'INDI' or line[2] == 'FAM'):
-                    line[1], line[2] = line[2], line[1]
-
-                # if tag + level isn't valid, continue
-                level, tag = int(line[0]), line[1] 
-                if tag not in validDict or level != validDict[tag]:
-                    continue
-                
-                # set rest of arguments to be a str
-                args = ' '.join(line[2:])
-
-                # BEGIN FILLING OUT PERSONS/FAMILIES
-
-                if level == 0: # Indicates a new record...
-                    if tag == "INDI":
-                        # New Person
-                        curr_person = args
-                        people[curr_person] = ["N/A"] * 8
-                        continue 
-
-                    if tag == "FAM":
-                        # New Family
-                        curr_family = args
-                        family[curr_family] = ["N/A"] * 7
-                        continue
-
-
-                # reference = ["NAME", "SEX", "BIRT", "AGE", "DEATH","CHILD","SPOUSE"]
-                if tag == "NAME":
-                    people[curr_person][0] = args
-                if tag == "SEX":
-                    people[curr_person][1] = args
-
-                if tag in ["BIRT", "DEAT", "MARR", "DIV"]: # need to save tag so we know where to store date
-                    prevTag = tag
-                    continue
-                
-                if tag == "DATE": 
-                    if prevTag in ["BIRT", "DEAT"]:
-                        # part of person
-                        if prevTag == "BIRT": # have to fill age
-                            months = ["", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-                            age = calc_age(date(int(line[4]), months.index(line[3]), int(line[2])))
-                            people[curr_person][2] = args
-                            people[curr_person][3] = age
-                            people[curr_person][4] = True
-
-                        if prevTag == "DEAT":
-                            # TODO update age so it calculates based on death not simply birth
-                            people[curr_person][4] = False
-                            people[curr_person][5] = args 
-                    else:
-                        # part of family
-                        # TODO create flags for if prevTag is MARR or DIV and fill out for each
-                        if prevTag == "MARR":
-                            family[curr_family][0] = args
-                        if prevTag == "DIV":
-                            family[curr_family][1] = args
-
-                        
-
-                # TODO Update Family Collection
-                # { Family_ID : [Married, Divorced, Husband_ID, Husband_Name, Wife_ID, Wife_Name, [Children]] }
-
-                if tag == "HUSB" or tag == "WIFE":
-                    #TODO individual_id of husband of family...
-                    temp_id = 2
-                    temp_name = 3
-                    if tag == "WIFE":
-                        temp_id = 4
-                        temp_name = 5
-                    family[curr_family][temp_id] = args
-                    family[curr_family][temp_name] = people[args][0]
-
-                if tag == "CHIL":
-                    #TODO Indiviudal_id of CHIL of family
-                    children = family[curr_family][6]
-                    if children == "N/A":
-                        children = []
-                    children += [args]
-
-                    family[curr_family][6] = children 
-                    
-                if tag == "FAMC" or tag == "FAMS":
-                    # tags will be handled at end --> self.gen_rest_args()
-                    # this will loop through family and set children/spouses for individuals
-                    pass
-            
-        self.people = people
-        self.family = family
-        self.gen_rest_args()
-        self.check_constraints()
+     
 
   
 if __name__ == '__main__':

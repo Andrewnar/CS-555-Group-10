@@ -430,8 +430,49 @@ class Family:
         ##############
         
         # US17 No marriages to descendants
+        for id, family in self.family.items():
+            mom, dad, children = family[2], family[4], family[6]
+            mom_descendents = []
+            dad_descendents = []
+
+            def recursiveChildren(id):
+                id_children = self.people[id][6]
+                if id_children == "N/A":
+                    return [id]
+                if id in id_children:
+                    return id_children
+                res = []
+                # print(id, id_children)
+                for child in id_children:
+                    res += recursiveChildren(child)
+                
+                return res
+            mom_descendents = recursiveChildren(mom)
+            dad_descendents = recursiveChildren(dad)
+            if dad in mom_descendents:
+                self.exceptions += [f"ERROR: FAMILY: US17: [{mom}] is married to his descendent [{dad}]"]
+            if mom in dad_descendents:
+                self.exceptions += [f"ERROR: FAMILY: US17: [{dad}] is married to her descendent [{mom}]"]
 
         # US18 Siblings should not marry
+        siblingsDict = {}
+        for id, people in self.people.items():
+            def getSiblingsOfID(id):
+                siblings = []
+                for famid, family in self.family.items():
+                    if family[6] == "N/A":
+                        pass
+                    if id in family[6]:
+                        siblings += family[6]
+                return siblings
+            siblings = getSiblingsOfID(id)
+            siblingsDict[id] = siblings
+        
+        for id, family in self.family.items():
+            dad, mom = family[2], family[4]
+            # print(dad, siblingsDict[dad], mom, siblingsDict[mom])
+            if mom in siblingsDict[dad] or dad in siblingsDict[mom]:
+                self.exceptions += [f"ERROR: FAMILY: US18: [{mom}] is married to her sibling [{dad}]"]
 
         # US19 First cousins should not marry
 

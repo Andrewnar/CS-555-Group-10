@@ -2,6 +2,7 @@ import sys
 import time
 import pprint
 import collections
+from collections import OrderedDict
 from datetime import datetime
 from datetime import timedelta
 from datetime import date
@@ -13,7 +14,7 @@ from dateutil.relativedelta import relativedelta
 # 
 printToFile = False
 if printToFile:
-    f = open('project3output.txt','w')
+    f = open('hw6/an/output.txt','w')
     sys.stdout = f  
 
 def calc_age(birthdate):
@@ -33,9 +34,6 @@ class Family:
 
 
     def __str__(self):
-        # To sort dictionary by key we can also make it an order dict and apply
-        # people = collections.OrderedDict(sorted(self.people.items()))
-        # family = collections.OrderedDict(sorted(self.family.items()))
 
         t = PrettyTable(['ID', 'Name', 'Gender', "Birthday", 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
         for key, val in self.people.items():
@@ -50,6 +48,33 @@ class Family:
         for excep in self.exceptions:
             print(excep)
         return ""
+
+    def orderSelf(self):
+        temp_peeps = {}
+        temp_fam = {}
+
+        for k, v in self.people.items():
+            k = int(k[1:]) # removes 'I'
+            temp_peeps[k] = v
+
+        for k, v in self.family.items():
+            k = int(k[1:]) # removes 'F'
+            temp_fam[k] = v
+
+        self.people = collections.OrderedDict(sorted(temp_peeps.items()))
+        self.family = collections.OrderedDict(sorted(temp_fam.items()))
+
+        temp_peeps, temp_fam = {}, {}
+
+        for k, v in self.people.items():
+            k = "I" + str(k) # adds 'I'
+            temp_peeps[k] = v
+
+        for k, v in self.family.items():
+            k = "F" + str(k) # adds 'F'
+            temp_fam[k] = v
+
+        self.people, self.family = temp_peeps, temp_fam
     
 
     def gen_rest_args(self):
@@ -110,9 +135,6 @@ class Family:
                 self.exceptions += [(f"ERROR: FAMILY: US02: [{id}]: Individual [{family[2]}] has marriage {marriage} that occurs before birthdate {husband_birth}")]
             if marriage < wife_birth :
                 self.exceptions += [(f"ERROR: FAMILY: US02: [{id}]: Individual [{family[4]}] has marriage {marriage} that occurs before birthdate {wife_birth}")]
-
-
-        
 
         # USO3 Birth before death - ch
         for (id, person) in self.people.items():
@@ -495,6 +517,7 @@ class Family:
         self.people = people
         self.family = family
         self.gen_rest_args()
+        self.orderSelf()
         self.check_constraints()
 
   
