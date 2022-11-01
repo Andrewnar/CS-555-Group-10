@@ -574,18 +574,6 @@ class Family:
                             self.exceptions += [f"ERROR: FAMILY: US20 : [{mom}] is married to [{dad}]"]
                             break
                     cantMarry.append(dadSib)
-        # auntUncleDict = {}
-        # for id, family in self.family.items():    
-        #     mom, dad, children = family[2], family[4], family[6]
-        #     siblingsMom = getSiblingsOfID(mom)
-        #     auntUncleDict[mom] = siblingsMom
-        #     siblingsDad = getSiblingsOfID(dad)
-        #     auntUncleDict[dad] = siblingsDad
-        #     momSiblings = auntUncleDict[mom]
-        #     dadSiblings = auntUncleDict[dad]   
-        #     for momSib in momSiblings:
-        #         if momSib in dadSiblings:
-        #             self.exceptions += [f"ERROR: FAMILY: US20: Aunts and Uncles cannot marry"]
 
         # US21 Correct gender for role
         # Husband in family should be male and wife in family should be female
