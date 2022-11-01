@@ -93,6 +93,17 @@ ERROR: FAMILY: US14: [F11] No more than five siblings should be born at the same
 ERROR: FAMILY: US15: [F11] There should be fewer than 15 siblings in a family. There are [16] siblings in this family
 ERROR: INDIVIDUAL: US16: [F11] All male members of a family should have the same last name. Child [I50] does not have the same last name as the father [/NotHogan/]
 ERROR: FAMILY: US17: [I28] is married to his descendent [I15]
+ERROR: FAMILY: US18: [I44] is married to her sibling [I43]
+ERROR: FAMILY: US19: [I44] is married to her 1st cousin [I43]
+ERROR: FAMILY: US20 : [I11] is married to [I10]
+ERROR: FAMILY: US20 : [I12] is married to [I13]
+ERROR: FAMILY: US20 : [I14] is married to [I33]
+ERROR: FAMILY: US20 : [I14] is married to [I32]
+ERROR: FAMILY: US20 : [I15] is married to [I29]
+ERROR: FAMILY: US20 : [I15] is married to [I28]
+ERROR: FAMILY: US20 : [I17] is married to [I16]
+ERROR: FAMILY: US20 : [I19] is married to [I18]
+ERROR: FAMILY: US20 : [I44] is married to [I43]
 ERROR: FAMILY: US21: [F14] Husband must be male
 ERROR: INDIVIDUAL: US23: [I43] Cannot have multiple people with the same name and birthday
 ERROR: INDIVIDUAL: US23: [I44] Cannot have multiple people with the same name and birthday

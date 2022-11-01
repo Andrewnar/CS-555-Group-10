@@ -50,9 +50,9 @@ class Family:
             f.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6]])
         print(f)
 
-        exceptions = self.exceptions
-        exceptions = set(exceptions)
-        self.exceptions = exceptions
+        # exceptions = self.exceptions
+        # exceptions = set(exceptions)
+        # self.exceptions = exceptions
 
         for excep in self.exceptions:
             print(excep)
@@ -549,6 +549,7 @@ class Family:
         #         self.exceptions += [f"ERROR: FAMILY: US20: Aunts and Uncles cannot marry"]
         #     mom_descendents = recursiveChildren(mom)
         #     dad_descendents = recursiveChildren(dad)
+
         # US20 Aunts and uncles a.k.a mom's siblings cant marry dad's siblings
         # create tuples of all married couples, compare to see if the mom and dad in tuples are in related families?
         cantMarry = []
@@ -558,11 +559,20 @@ class Family:
                 dad, mom = family[2], family[4]
                 for momSib in siblingsDict[mom]:
                     if momSib in cantMarry:
-                        self.exceptions += [f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"]
+                        exceptions = self.exceptions
+                        exception_temp = f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"
+                        print(type(exception_temp), type(exceptions[0]))
+                        if exception_temp not in exceptions:
+                            self.exceptions += [f"ERROR: FAMILY: US20 : [{mom}] is married to [{dad}]"]
+                            break
                     cantMarry.append(momSib)
                 for dadSib in siblingsDict[dad]:
                     if dadSib in cantMarry:
-                        self.exceptions += [f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"]
+                        exceptions = self.exceptions
+                        exception_temp = f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"
+                        if exception_temp not in exceptions:
+                            self.exceptions += [f"ERROR: FAMILY: US20 : [{mom}] is married to [{dad}]"]
+                            break
                     cantMarry.append(dadSib)
         # auntUncleDict = {}
         # for id, family in self.family.items():    
