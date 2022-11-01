@@ -50,6 +50,10 @@ class Family:
             f.add_row([key, val[0], val[1], val[2], val[3], val[4], val[5], val[6]])
         print(f)
 
+        exceptions = self.exceptions
+        exceptions = set(exceptions)
+        self.exceptions = exceptions
+
         for excep in self.exceptions:
             print(excep)
         return ""
@@ -475,6 +479,58 @@ class Family:
                 self.exceptions += [f"ERROR: FAMILY: US18: [{mom}] is married to her sibling [{dad}]"]
 
         # US19 First cousins should not marry
+        '''
+        for each person
+            get their children and siblings children []
+                check if children in married to siblings children
+            
+        '''
+
+        def getFstChildren(id):
+            children = self.people[id][6]
+            if children == "N/A":
+                children = []
+            return children
+        
+        def getMultipleChildren(id_arr):
+            children = []
+            for ids in id_arr:
+                childs = getFstChildren(ids)
+                children += childs
+            return children
+
+        for id, family in self.family.items():
+            dad, mom = family[2], family[4]
+            dad_siblings, mom_siblings = getSiblingsOfID(dad), getSiblingsOfID(mom)
+
+            dad_children, mom_children = getFstChildren(dad), getFstChildren(mom)
+            dad_siblings_children, mom_siblings_children = getMultipleChildren(dad_siblings), getMultipleChildren(mom_siblings)
+            fam_children, cousins = dad_children+mom_children, dad_siblings_children+mom_siblings_children
+
+            for id2, family2 in self.family.items():
+                dad2, mom2 = family2[2], family2[4]
+                # print(dad2, mom2, fam_children, cousins)
+                if dad2 in fam_children:
+                    if mom2 in cousins:
+                        self.exceptions += [f"ERROR: FAMILY: US19: [{mom2}] is married to her 1st cousin [{dad2}]"]
+                elif dad2 in cousins:
+                    if mom2 in fam_children:
+                        self.exceptions += [f"ERROR: FAMILY: US19: [{mom2}] is married to her 1st cousin [{dad2}]"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # for id, family in self.family.items():    
         #     mom, dad, children = family[2], family[4], family[6]
         #     momSiblings = siblingsDict[mom]
@@ -497,7 +553,7 @@ class Family:
         # create tuples of all married couples, compare to see if the mom and dad in tuples are in related families?
         cantMarry = []
         for id, family in self.family.items():
-            print(family)
+            # print(family)
             if family[0] != 'N/A':
                 dad, mom = family[2], family[4]
                 for momSib in siblingsDict[mom]:
@@ -520,6 +576,7 @@ class Family:
         #     for momSib in momSiblings:
         #         if momSib in dadSiblings:
         #             self.exceptions += [f"ERROR: FAMILY: US20: Aunts and Uncles cannot marry"]
+
         # US21 Correct gender for role
         # Husband in family should be male and wife in family should be female
         for id, family in self.family.items():
