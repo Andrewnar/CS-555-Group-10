@@ -561,7 +561,6 @@ class Family:
                     if momSib in cantMarry:
                         exceptions = self.exceptions
                         exception_temp = f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"
-                        print(type(exception_temp), type(exceptions[0]))
                         if exception_temp not in exceptions:
                             self.exceptions += [f"ERROR: FAMILY: US20 : [{mom}] is married to [{dad}]"]
                             break
