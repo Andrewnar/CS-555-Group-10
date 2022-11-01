@@ -517,38 +517,6 @@ class Family:
                     if mom2 in fam_children:
                         self.exceptions += [f"ERROR: FAMILY: US19: [{mom2}] is married to her 1st cousin [{dad2}]"]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # for id, family in self.family.items():    
-        #     mom, dad, children = family[2], family[4], family[6]
-        #     momSiblings = siblingsDict[mom]
-        #     dadSiblings = siblingsDict[dad]   
-        #     momSideCousins = []
-        #     dadSideCousins = []
-        #     # get all of mom's sides cousins
-        #     for momSib in momSiblings:
-        #         momSibChildren = getSiblingsOfID(momSib)
-        #         momSideCousins += momSibChildren
-        #     # get all of dad's sides cousins
-        #     for dadSib in dadSiblings:
-        #         dadSibChildren = getSiblingsOfID(dadSib)
-        #         dadSideCousins += dadSibChildren
-        #     if momCuz in momSideCousins:
-        #         self.exceptions += [f"ERROR: FAMILY: US20: Aunts and Uncles cannot marry"]
-        #     mom_descendents = recursiveChildren(mom)
-        #     dad_descendents = recursiveChildren(dad)
         # US20 Aunts and uncles a.k.a mom's siblings cant marry dad's siblings
         # create tuples of all married couples, compare to see if the mom and dad in tuples are in related families?
         cantMarry = []
@@ -564,18 +532,6 @@ class Family:
                     if dadSib in cantMarry:
                         self.exceptions += [f"ERROR: FAMILY: US20: [{mom}] is married to [{dad}]"]
                     cantMarry.append(dadSib)
-        # auntUncleDict = {}
-        # for id, family in self.family.items():    
-        #     mom, dad, children = family[2], family[4], family[6]
-        #     siblingsMom = getSiblingsOfID(mom)
-        #     auntUncleDict[mom] = siblingsMom
-        #     siblingsDad = getSiblingsOfID(dad)
-        #     auntUncleDict[dad] = siblingsDad
-        #     momSiblings = auntUncleDict[mom]
-        #     dadSiblings = auntUncleDict[dad]   
-        #     for momSib in momSiblings:
-        #         if momSib in dadSiblings:
-        #             self.exceptions += [f"ERROR: FAMILY: US20: Aunts and Uncles cannot marry"]
 
         # US21 Correct gender for role
         # Husband in family should be male and wife in family should be female
