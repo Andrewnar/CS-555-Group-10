@@ -629,6 +629,42 @@ class Family:
             else: # add this marriage date to the dictionary
                 spouse_date[marriage_date] = [spouses]
 
+    # US31 List living single
+    def list_living_single(self):
+        singles = [] # result array
+        for id, info in self.people.items():
+            age = info[3] # get person's age
+            
+            single = True # track if this person is single or not
+            if age > 30: # check if age is greater than 30
+                for fam_id, fam_info in self.family.items(): # check if never married
+                    husband_id = fam_info[2] # get husband id
+                    wife_id = fam_info[4] # get wife id
+                    if id == husband_id or id == wife_id: # if there person has been married, set single flag to false and break
+                        single = False
+                        break
+            
+                if single: # if we have not found this individual in a family, they are single so add them to the result array
+                    singles.append(id)
+
+        return singles
+
+
+    # US32 List multiple births
+    def list_mult_births(self):
+        mult_births = [] # result array
+        for id, info in self.family.items(): # loop through families
+            children = info[6] # get the children array
+
+            # check children array exists, if not continue to next family
+            if children == 'N/A':
+                continue
+            
+            # if there are more than 1 child, add the family to the result array
+            if len(children) > 1:
+                mult_births.append(id)
+        
+        return mult_births
 
     def create_family(self, filename):
         people = self.people 
