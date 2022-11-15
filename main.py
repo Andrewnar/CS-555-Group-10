@@ -517,20 +517,6 @@ class Family:
                     if mom2 in fam_children:
                         self.exceptions += [f"ERROR: FAMILY: US19: [{mom2}] is married to her 1st cousin [{dad2}]"]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         # for id, family in self.family.items():    
         #     mom, dad, children = family[2], family[4], family[6]
         #     momSiblings = siblingsDict[mom]
@@ -628,6 +614,34 @@ class Family:
                     spouse_date[marriage_date].append(spouses)
             else: # add this marriage date to the dictionary
                 spouse_date[marriage_date] = [spouses]
+
+        ##############
+        ## SPRINT 4 ##
+        ##############
+
+
+    ####################
+    ## LIST FUNCTIONS ##
+    ####################
+
+    # US29 List deceased
+    def list_deceased(self):
+        deceased = []
+        for id, info in self.people.items():
+            alive = info[4]
+            if not alive:
+                deceased.append(info[0])
+        return deceased
+
+    # US30 List living married
+    def list_living_married(self):
+        living_married = []
+        for id, info in self.people.items():
+            spouse = info[7]
+            alive = info[4]
+            if alive and spouse != 'N/A':
+                living_married.append(info[0])
+        return living_married
 
     # US31 List living single
     def list_living_single(self):
