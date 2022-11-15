@@ -796,6 +796,6 @@ class Family:
   
 if __name__ == '__main__':
     filename = "data/testfamily.ged"
-    andrew_fam = Family(filename)
-    andrew_fam.create_family(filename)
-    print(andrew_fam)
+    family = Family(filename)
+    family.create_family(filename)
+    print(family)
