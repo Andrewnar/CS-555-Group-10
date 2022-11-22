@@ -624,6 +624,32 @@ class Family:
     ## LIST FUNCTIONS ##
     ####################
 
+    # US27 Include individual ages
+    def list_include_ages(self):
+        individuals = []
+        for id, info in self.people.items():
+            name = info[0]
+            age= info[3]
+            individuals.append((name, age))
+        return individuals
+
+    # US28 Order siblings by age
+    def order_siblings(self):
+        siblingsDict = {}
+        for id, people in self.people.items():
+            def getSiblingsOfID(id):
+                siblings = []
+                for famid, family in self.family.items():
+                    if family[6] == "N/A":
+                        pass
+                    if id in family[6]:
+                        siblings += family[6]
+                return siblings
+            siblings = getSiblingsOfID(id)
+            siblingsDict[id] = siblings
+        for key in siblingsDict:
+            siblingsDict[key].sort(reverse=True)
+        return siblingsDict
     # US29 List deceased
     def list_deceased(self):
         deceased = []
