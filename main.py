@@ -119,6 +119,14 @@ class Family:
             return None
         else:
             return self.convert_to_date(fam_info[1])
+    
+    # helper to refactor and make getting parents ages easier
+    def getParentsAge(self, family):
+        mother = family[4]
+        father = family[2]
+        dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
+        mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
+        return [dad_age, mom_age]
 
     def check_constraints(self):
         # This function will check the constraints defined by the user stories
@@ -340,13 +348,7 @@ class Family:
 
 
         # US12 Parents not too old
-        # helper to refactor and make getting parents ages easier
-        def getParentsAge(family):
-            mother = family[4]
-            father = family[2]
-            dad_age = datetime.strptime(self.people[father][2], '%d %b %Y').date()
-            mom_age = datetime.strptime(self.people[mother][2], '%d %b %Y').date()
-            return [dad_age, mom_age]
+        
         
         def calcAge(dad_age, mom_age, dad_increment, mom_increment):
             return [dad_age+dad_increment, mom_age+mom_increment]
@@ -365,7 +367,7 @@ class Family:
 
             # refactored code 1. find parents age in separate function 2. calculate increments in age for parents
             # get +80 father age, +60 mother age
-            parents_age = getParentsAge(family)
+            parents_age = self.getParentsAge(family)
             newAges = calcAge(parents_age[0], parents_age[1], relativedelta(months=960), relativedelta(months=720))
             children = family[6]
             child_age = 0
@@ -619,10 +621,26 @@ class Family:
         ## SPRINT 4 ##
         ##############
 
+        # US25 Unique first names in families
+        for id, info in self.family.items():
+            fnames = {} # name : seen_id
+            children = [] if info[6] == "N/A" else info[6]
+            fam = children + [info[2]] + [info[4]]
+
+            for person_id in fam:
+                name = self.people[person_id][0]
+                f_name = name.split(' ')[0]
+                if f_name in fnames:
+                    self.exceptions += [f"ERROR: FAMILY: US25: [{person_id}] Cannot have same first name [{f_name}] as [{fnames[f_name]}]"]
+                    break
+                fnames[f_name] = person_id
+
 
     ####################
     ## LIST FUNCTIONS ##
     ####################
+
+    
 
     # US27 Include individual ages
     def list_include_ages(self):
@@ -705,6 +723,25 @@ class Family:
                 mult_births.append(id)
         
         return mult_births
+    
+    # US 34 List large age differences
+    def list_large_age_dff(self):
+        ret = []
+        for id, info in self.family.items():
+            dad_birth, mom_birth = self.getParentsAge(info)
+            married_date = datetime.strptime(info[0], '%d %b %Y').date()
+            dad_birth, mom_birth = married_date-dad_birth, married_date-mom_birth
+            # 07, 09, 15 ==== 08, 06
+            dad_older = True if dad_birth > mom_birth else False
+            dad, mom = dad_birth.days, mom_birth.days
+            if dad_older: 
+                if mom*2 > dad:
+                    ret += [(self.people[info[2]][0], self.people[info[4]][0])]
+            else:
+                if dad*2 > mom:
+                    ret += [(self.people[info[2]][0], self.people[info[4]][0])]
+        return ret
+
 
     def create_family(self, filename):
         people = self.people 
